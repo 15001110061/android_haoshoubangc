@@ -1,0 +1,284 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#959492" >
+
+    <include
+        android:id="@+id/include_stub_title"
+        layout="@layout/stub_title" />
+
+    <RelativeLayout
+        android:id="@+id/ll_workcad"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/include_stub_title"
+        android:layout_marginBottom="@dimen/dd_dimen_70px"
+        android:layout_marginLeft="@dimen/dd_dimen_56px"
+        android:layout_marginRight="@dimen/dd_dimen_56px"
+        android:layout_marginTop="@dimen/dd_dimen_98px"
+        android:background="@drawable/shape_gongpai_item_rl_wite"
+        android:orientation="vertical"
+        >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="@dimen/dd_dimen_29px"
+            android:layout_marginLeft="@dimen/dd_dimen_29px"
+            android:layout_marginRight="@dimen/dd_dimen_29px"
+            android:layout_marginTop="@dimen/dd_dimen_29px"
+            android:background="@drawable/shape_gongpai_item_rl_bg"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="@dimen/dd_dimen_6px"
+                android:layout_marginLeft="@dimen/dd_dimen_6px"
+                android:layout_marginRight="@dimen/dd_dimen_6px"
+                android:layout_marginTop="@dimen/dd_dimen_6px"
+                android:background="@drawable/shape_gongpai_item_rl_bg"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dd_dimen_100px"
+                    android:gravity="center_horizontal" >
+
+                    <ImageView
+                        android:id="@+id/iv_workcard_touxiang"
+                        android:layout_width="@dimen/dd_dimen_330px"
+                        android:layout_height="@dimen/dd_dimen_330px"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/dd_dimen_40px"
+                        android:contentDescription="@string/app_name"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/icon_touxiangmoren2" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dd_dimen_28px"
+                    android:gravity="center_vertical" >
+
+                    <com.cgzz.job.view.CustomerRatingBarGo
+                        android:id="@+id/cb_workcard_car"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true" >
+                    </com.cgzz.job.view.CustomerRatingBarGo>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dd_dimen_40px"
+                    android:layout_marginRight="@dimen/dd_dimen_40px"
+                    android:layout_marginTop="@dimen/dd_dimen_28px"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dd_dimen_125px" >
+
+                        <TextView
+                            android:id="@+id/tv_workcard_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="姓名:"
+                            android:textColor="@color/common_text"
+                            android:textSize="@dimen/dd_dimen_36px" />
+
+                        <TextView
+                            android:id="@+id/tv_workcard_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/tv_workcard_1"
+                            android:layout_alignBottom="@+id/tv_workcard_1"
+                            android:layout_marginLeft="@dimen/dd_dimen_20px"
+                            android:layout_toRightOf="@+id/tv_workcard_1"
+                            android:text="小名aaaa"
+                            android:textColor="@color/common_text"
+                            android:textSize="@dimen/dd_dimen_36px" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dd_dimen_40px"
+                    android:layout_marginRight="@dimen/dd_dimen_40px"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dd_dimen_125px" >
+
+                        <TextView
+                            android:id="@+id/tv_workcard_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dd_dimen_60px"
+                            android:text="年龄:"
+                            android:textColor="@color/common_text"
+                            android:textSize="@dimen/dd_dimen_36px" />
+
+                        <TextView
+                            android:id="@+id/tv_workcard_age"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/tv_workcard_2"
+                            android:layout_alignBottom="@+id/tv_workcard_2"
+                            android:layout_marginLeft="@dimen/dd_dimen_20px"
+                            android:layout_toRightOf="@+id/tv_workcard_2"
+                            android:text="25"
+                            android:textColor="@color/common_text"
+                            android:textSize="@dimen/dd_dimen_36px" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dd_dimen_40px"
+                    android:layout_marginRight="@dimen/dd_dimen_40px"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dd_dimen_125px" >
+
+                        <TextView
+                            android:id="@+id/tv_workcard_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dd_dimen_60px"
+                            android:text="工龄:"
+                            android:textColor="@color/common_text"
+                            android:textSize="@dimen/dd_dimen_36px" />
+
+                        <TextView
+                            android:id="@+id/tv_workcard_gongling"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/tv_workcard_3"
+                            android:layout_alignBottom="@+id/tv_workcard_3"
+                            android:layout_marginLeft="@dimen/dd_dimen_20px"
+                            android:layout_toRightOf="@+id/tv_workcard_3"
+                            android:text="0年"
+                            android:textColor="@color/common_text"
+                            android:textSize="@dimen/dd_dimen_36px" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dd_dimen_40px"
+                    android:layout_marginRight="@dimen/dd_dimen_40px"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dd_dimen_125px" >
+
+                        <TextView
+                            android:id="@+id/tv_workcard_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dd_dimen_60px"
+                            android:text="帮客号:"
+                            android:textColor="@color/common_text"
+                            android:textSize="@dimen/dd_dimen_36px" />
+
+                        <TextView
+                            android:id="@+id/tv_workcard_bangkehao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/tv_workcard_4"
+                            android:layout_alignBottom="@+id/tv_workcard_4"
+                            android:layout_marginLeft="@dimen/dd_dimen_20px"
+                            android:layout_toRightOf="@+id/tv_workcard_4"
+                            android:text="110102"
+                            android:textColor="@color/common_text"
+                            android:textSize="@dimen/dd_dimen_36px" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/ll_workcad2"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone"
+        android:layout_below="@id/include_stub_title"
+        android:layout_marginBottom="@dimen/dd_dimen_70px"
+        android:layout_marginLeft="@dimen/dd_dimen_56px"
+        android:layout_marginRight="@dimen/dd_dimen_56px"
+        android:layout_marginTop="@dimen/dd_dimen_98px"
+        android:background="@drawable/shape_gongpai_item_rl_wite"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="@dimen/dd_dimen_29px"
+            android:layout_marginLeft="@dimen/dd_dimen_29px"
+            android:layout_marginRight="@dimen/dd_dimen_29px"
+            android:layout_marginTop="@dimen/dd_dimen_29px"
+            android:background="@drawable/shape_gongpai_item_rl_bg"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="@dimen/dd_dimen_6px"
+                android:layout_marginLeft="@dimen/dd_dimen_6px"
+                android:layout_marginRight="@dimen/dd_dimen_6px"
+                android:layout_marginTop="@dimen/dd_dimen_6px"
+                android:background="@drawable/shape_gongpai_item_rl_bg"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:id="@+id/rl_workcad"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="@dimen/dd_dimen_10px"
+                    android:layout_marginLeft="@dimen/dd_dimen_10px"
+                    android:layout_marginRight="@dimen/dd_dimen_10px"
+                    android:layout_marginTop="@dimen/dd_dimen_10px"
+                    android:background="@color/common_grey" >
+
+                    <com.cgzz.job.view.CustomListView
+                        android:id="@+id/cl_workcad_listView"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginTop="@dimen/dd_dimen_100px"
+                        android:fadingEdge="none"
+                        android:flipInterval="30"
+                        android:persistentDrawingCache="animation" >
+                    </com.cgzz.job.view.CustomListView>
+                </RelativeLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="@dimen/dd_dimen_234px"
+        android:layout_height="@dimen/dd_dimen_234px"
+        android:layout_below="@id/include_stub_title"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/icon_work" />
+
+</RelativeLayout>

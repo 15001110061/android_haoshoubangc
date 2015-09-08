@@ -1,0 +1,214 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_seting_two"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:background="@color/common_white"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/include_stub_title"
+        layout="@layout/stub_title" />
+
+    <RelativeLayout
+        android:id="@+id/rl_home_item_b"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dd_dimen_56px"
+        android:layout_below="@id/include_stub_title"
+        android:background="@color/common_f6ede4"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/tv_wages_site"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="X"
+            android:textColor="@color/common_text"
+            android:textSize="@dimen/dd_dimen_22px" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_home_item_b2"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dd_dimen_250px"
+        android:layout_below="@id/rl_home_item_b"
+        android:background="@color/common_white" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="@dimen/dd_dimen_30px"
+            android:layout_marginTop="@dimen/dd_dimen_26px"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="本次收入"
+            android:textColor="@color/common_text"
+            android:textSize="@dimen/dd_dimen_24px" />
+
+        <TextView
+            android:id="@+id/tv_wages_isxianjin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView1"
+            android:layout_alignBottom="@+id/textView1"
+            android:layout_marginLeft="@dimen/dd_dimen_5px"
+            android:layout_toRightOf="@+id/textView1"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="(现金)"
+            android:textColor="@color/common_yellow"
+            android:textSize="@dimen/dd_dimen_24px" />
+
+        <TextView
+            android:id="@+id/tv_wages_jine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="￥0"
+            android:textColor="@color/common_yellow"
+            android:textSize="@dimen/dd_dimen_100px" />
+
+        <TextView
+            android:id="@+id/tv_wages_dashang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_wages_jine"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dd_dimen_10px"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="(含打赏0元)"
+            android:textColor="@color/common_666666"
+            android:textSize="@dimen/dd_dimen_24px" />
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dd_dimen_1px"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/devide_line" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dd_dimen_1px"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="@color/devide_line" />
+
+        <ImageView
+            android:id="@+id/tv_wages_picture2"
+            android:layout_width="@dimen/dd_dimen_197px"
+            android:layout_height="@dimen/dd_dimen_176px"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/tv_wages_dashang"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_xianjinzhifu" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_ordersfeedback_one"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dd_dimen_120px"
+        android:layout_below="@id/rl_home_item_b2"
+        android:background="@color/common_white"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/tv_wages_picture"
+            android:layout_width="@dimen/dd_dimen_96px"
+            android:layout_height="@dimen/dd_dimen_96px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dd_dimen_40px"
+            android:contentDescription="@string/app_name"
+            android:padding="@dimen/dd_dimen_8px"
+            android:scaleType="fitXY"
+            android:src="@drawable/image_jiudianmoren" />
+
+        <TextView
+            android:id="@+id/tv_wages_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dd_dimen_40px"
+            android:layout_marginRight="@dimen/dd_dimen_50px"
+            android:layout_toRightOf="@+id/tv_wages_picture"
+            android:gravity="center"
+            android:text="七天连锁"
+            android:textColor="@color/common_text"
+            android:textSize="@dimen/dd_dimen_30px" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dd_dimen_1px"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="@color/devide_line" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_ordersfeedback_therr"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_ordersfeedback_one"
+        android:background="@color/common_white"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv_wages_pingjia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="@dimen/dd_dimen_30px"
+            android:layout_marginRight="@dimen/dd_dimen_30px"
+            android:layout_marginTop="@dimen/dd_dimen_38px"
+            android:gravity="center"
+            android:text="评价酒店"
+            android:textColor="@color/common_text"
+            android:textSize="@dimen/dd_dimen_30px" />
+
+        <GridView
+            android:id="@+id/grid"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/tv_wages_pingjia"
+            android:layout_marginLeft="@dimen/dd_dimen_30px"
+            android:layout_marginRight="@dimen/dd_dimen_30px"
+            android:layout_marginTop="@dimen/dd_dimen_36px"
+          
+            android:gravity="center"
+            android:horizontalSpacing="@dimen/dd_dimen_74px"
+            android:listSelector="@color/common_white"
+            android:numColumns="3"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="@dimen/dd_dimen_43px" >
+        </GridView>
+    </RelativeLayout>
+
+</RelativeLayout>

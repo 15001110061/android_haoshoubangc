@@ -1,0 +1,88 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_seting_two"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/common_grey" >
+
+    <include
+        android:id="@+id/include_stub_title"
+        layout="@layout/stub_title" />
+
+    <LinearLayout
+        android:id="@+id/two"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/include_stub_title"
+        android:layout_marginTop="@dimen/dd_dimen_20px"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/rl_yinhang"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dd_dimen_160px"
+            android:background="@color/common_white" >
+
+            <ImageView
+                android:id="@+id/iv_6"
+                android:layout_width="@dimen/dd_dimen_100px"
+                android:layout_height="@dimen/dd_dimen_100px"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dd_dimen_23px"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/image_yinhang" />
+
+            <TextView
+                android:id="@+id/iv_my_income2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/iv_6"
+                android:layout_marginLeft="16dp"
+                android:layout_toRightOf="@+id/iv_6"
+                android:gravity="center_vertical"
+                android:text="银行"
+                android:textColor="@color/common_text"
+                android:textSize="@dimen/dd_dimen_36px" />
+
+            <TextView
+                android:id="@+id/iv_my_income3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/iv_6"
+                android:layout_alignLeft="@+id/iv_my_income2"
+                android:gravity="center_vertical"
+                android:text="储蓄卡"
+                android:textColor="@color/common_text"
+                android:textSize="@dimen/dd_dimen_34px" />
+
+            <TextView
+                android:id="@+id/iv_my_income4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/iv_my_income3"
+                android:layout_alignBottom="@+id/iv_my_income3"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="18dp"
+                android:gravity="center_vertical"
+                android:text="**** **** **** 0000"
+                android:textColor="@color/common_text"
+                android:textSize="@dimen/dd_dimen_34px" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_lookbank_genghuan"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dd_dimen_85px"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/two"
+        android:layout_marginBottom="@dimen/dd_dimen_50px"
+        android:layout_marginLeft="@dimen/dd_dimen_60px"
+        android:layout_marginRight="@dimen/dd_dimen_60px"
+        android:layout_marginTop="@dimen/dd_dimen_54px"
+        android:background="@drawable/shape_home_item_tv_sign_bg"
+        android:gravity="center"
+        android:text="更换银行卡"
+        android:textColor="@color/common_white"
+        android:textSize="@dimen/dd_dimen_36px" />
+
+</RelativeLayout>

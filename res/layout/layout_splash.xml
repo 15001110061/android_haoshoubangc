@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ff971e" >
+
+    <TextView
+        android:id="@+id/tv_current_peonumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_current_picture"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:text="好手帮"
+        android:textColor="@color/common_text"
+        android:textSize="@dimen/dd_dimen_46px"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/tv_current_picture"
+        android:layout_width="@dimen/dd_dimen_350px"
+        android:layout_height="@dimen/dd_dimen_254px"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="142dp"
+        android:src="@drawable/ic_splashs" />
+
+    <TextView
+        android:id="@+id/tv_current_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/dd_dimen_56px"
+        android:singleLine="true"
+        android:text="最好的酒店清洁用工平台"
+        android:textColor="@color/common_white"
+        android:textSize="@dimen/dd_dimen_36px" />
+
+</RelativeLayout>

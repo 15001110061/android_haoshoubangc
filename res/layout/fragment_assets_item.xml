@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/common_white" >
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dd_dimen_120px"
+        android:layout_marginLeft="@dimen/dd_dimen_30px"
+        android:layout_marginRight="@dimen/dd_dimen_30px" >
+
+        <RelativeLayout
+            android:id="@+id/rl_home_two"
+            android:layout_width="@dimen/dd_dimen_80px"
+            android:layout_height="@dimen/dd_dimen_80px"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/iv_assets_biaoshi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/icon_dashangs"
+             />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="@dimen/dd_dimen_30px"
+            android:layout_marginRight="@dimen/dd_dimen_30px"
+            android:layout_toRightOf="@+id/rl_home_two"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/rl_collection_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:id="@+id/iv_assets_zhuangtai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:gravity="center_vertical"
+                    android:text=""
+                    android:textColor="@color/common_text"
+                    android:textSize="@dimen/dd_dimen_30px" />
+
+                <TextView
+                    android:id="@+id/iv_assets_qian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:text="0"
+                    android:textColor="@color/common_yellow"
+                    android:textSize="@dimen/dd_dimen_30px" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_collection_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_collection_one" >
+
+                <TextView
+                    android:id="@+id/iv_assets_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="0"
+                    android:textColor="@color/common_message"
+                    android:textSize="@dimen/dd_dimen_24px" />
+
+                <TextView
+                    android:id="@+id/iv_assets_miaoshu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text=""
+                    android:textColor="@color/common_message"
+                    android:textSize="@dimen/dd_dimen_24px" />
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dd_dimen_1px"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/relativeLayout1"
+        android:layout_marginLeft="@dimen/dd_dimen_144px"
+        android:background="@color/devide_line" />
+
+</RelativeLayout>

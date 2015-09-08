@@ -1,0 +1,74 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_seting_two"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:background="@color/common_grey"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/include_stub_title"
+        layout="@layout/stub_title" />
+
+    <RelativeLayout
+        android:id="@+id/rl_tam_1"
+        android:layout_width="@dimen/dd_dimen_352px"
+        android:layout_height="@dimen/dd_dimen_96px"
+          android:minWidth="@dimen/dd_dimen_200px"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/include_stub_title"
+        android:layout_marginLeft="@dimen/dd_dimen_30px"
+        android:layout_marginRight="@dimen/dd_dimen_30px"
+        android:layout_marginTop="@dimen/dd_dimen_38px"
+        android:background="@drawable/shape_current_item_rl_bgss"
+     >
+
+        <TextView
+            android:id="@+id/tv_tam_yuyin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dd_dimen_15px"
+            android:background="@drawable/icon_bofang"
+            android:textColor="@color/common_text"
+            android:textSize="@dimen/dd_dimen_24px" />
+
+           <ProgressBar
+               android:id="@+id/progressbar"
+               style="?android:attr/progressBarStyleHorizontal"
+               android:layout_width="fill_parent"
+               android:layout_height="2dp"
+               android:layout_alignParentBottom="true"
+               android:layout_centerHorizontal="true"
+               android:background="@color/common_white" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_tam_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/rl_tam_1"
+        android:layout_marginLeft="@dimen/dd_dimen_30px"
+        android:layout_marginRight="@dimen/dd_dimen_30px"
+        android:layout_marginTop="@dimen/dd_dimen_38px"
+        android:background="@drawable/shape_current_item_rl_bgs"
+        android:paddingBottom="@dimen/dd_dimen_30px"
+        android:paddingLeft="@dimen/dd_dimen_20px"
+        android:paddingRight="@dimen/dd_dimen_20px"
+        android:paddingTop="@dimen/dd_dimen_30px" >
+
+        <TextView
+            android:id="@+id/tv_tam_liuyan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="留言信息"
+            android:textColor="@color/common_text"
+            android:textSize="@dimen/dd_dimen_28px" />
+    </RelativeLayout>
+
+ 
+
+</RelativeLayout>

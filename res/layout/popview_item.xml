@@ -1,0 +1,22 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+  <ImageButton
+        android:id="@+id/ib_dis"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#a0000000"
+        android:visibility="visible" />
+    <com.cgzz.job.view.CustomListView    android:layout_alignParentBottom="true"
+    android:layout_alignParentLeft="true"
+        android:id="@+id/listView_select"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dimen_320px"
+        android:layout_gravity="center"
+        android:background="@color/common_white"
+        android:cacheColorHint="#00000000" >
+    </com.cgzz.job.view.CustomListView>
+
+</RelativeLayout>
