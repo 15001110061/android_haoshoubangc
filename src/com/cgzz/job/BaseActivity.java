@@ -33,7 +33,7 @@ import android.widget.TextView;
 public class BaseActivity extends Activity implements OnReceiverListener {
 	protected ProgressDialog waitDialog;
 	public GlobalVariables application;
-	public String AccessType = null;
+	public String AccessType = null; 
 	protected final int TITLE_TYPE_TEXT = 0;
 	protected final int TITLE_TYPE_IMG = 1;
 	public ImageLoader mImageLoader;
