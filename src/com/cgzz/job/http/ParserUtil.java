@@ -4051,7 +4051,7 @@ public class ParserUtil {
 				if (jsonObject.has("first")) {
 					bundle.putString("first", jsonObject.getString("first"));
 				}
-				
+
 			}
 
 		} catch (Exception e) {
@@ -4502,14 +4502,11 @@ public class ParserUtil {
 
 				if (jsonObject1.has("result")) {
 					JSONObject jsonObject = new JSONObject(jsonObject1.getString("result"));
-					
-					
-					
+
 					if (jsonObject.has("status")) {
 						bundle.putString("status", jsonObject.getString("status"));
 					}
-					
-					
+
 					if (jsonObject.has("data")) {
 
 						JSONArray optJSONArray = jsonObject.optJSONArray("data");
@@ -4589,7 +4586,8 @@ public class ParserUtil {
 							if (optJSONObject.has("roomcount")) {
 								hMap.put("roomcount", optJSONObject.optString("roomcount"));
 
-							}	if (optJSONObject.has("rooms")) {
+							}
+							if (optJSONObject.has("rooms")) {
 								hMap.put("rooms", optJSONObject.optString("rooms"));
 
 							}
@@ -4597,7 +4595,7 @@ public class ParserUtil {
 								hMap.put("ordersystemid", optJSONObject.optString("ordersystemid"));
 
 							}
-							
+
 							data.add(hMap);
 						}
 					}
@@ -4693,6 +4691,11 @@ public class ParserUtil {
 						hMap.put("dict_value", optJSONObject.optString("dict_value"));
 
 					}
+					if (optJSONObject.has("dict_key")) {
+						hMap.put("dict_key", optJSONObject.optString("dict_key"));
+
+					}
+
 					hMap.put("flag", "false");
 					data.add(hMap);
 				}
@@ -4868,7 +4871,7 @@ public class ParserUtil {
 			if (jsonObject2.has("orderDetailId")) {
 				bundle.putString("orderDetailId", jsonObject2.getString("orderDetailId"));
 			}
-			
+
 			if (jsonObject2.has("homemessage")) {
 				bundle.putString("homemessage", jsonObject2.getString("homemessage"));
 			}
@@ -4984,11 +4987,11 @@ public class ParserUtil {
 				if (jsonObject.has("xinyong")) {
 					bundle.putString("xinyong", jsonObject.getString("xinyong"));
 				}
-				
+
 				if (jsonObject.has("havebank")) {
 					bundle.putString("havebank", jsonObject.getString("havebank"));
 				}
-				
+
 			}
 
 		} catch (Exception e) {

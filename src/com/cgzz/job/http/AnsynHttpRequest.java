@@ -13,6 +13,7 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import cn.jpush.android.api.JPushInterface;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
@@ -27,6 +28,7 @@ import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.cgzz.job.R;
 import com.cgzz.job.activity.LoginActivity;
+import com.cgzz.job.activity.SetingActivity;
 import com.cgzz.job.application.GlobalVariables;
 import com.cgzz.job.utils.ToastUtil;
 import com.cgzz.job.utils.Utils;
@@ -89,7 +91,7 @@ public class AnsynHttpRequest {
 								callBack.back(null, HttpStaticApi.FAILURE_HTTP,
 										i, obj, loadedtype);
 							} else if (isContinue(context, response) == -1) {
-
+								JPushInterface.stopPush(context);
 								GlobalVariables application = (GlobalVariables) context
 										.getApplicationContext();
 								application.setLogon(false);
@@ -173,7 +175,7 @@ public class AnsynHttpRequest {
 						callBack.back(null, HttpStaticApi.FAILURE_HTTP, i, obj,
 								loadedtype);
 					} else if (isContinue(context, response) == -1) {
-
+						JPushInterface.stopPush(context);
 						GlobalVariables application = (GlobalVariables) context
 								.getApplicationContext();
 						application.setLogon(false);

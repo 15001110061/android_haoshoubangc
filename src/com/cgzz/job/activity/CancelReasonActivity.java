@@ -177,7 +177,7 @@ public class CancelReasonActivity extends BaseActivity implements OnClickListene
 			String s = "";
 			for (int i = 0; i < list.size(); i++) {
 				if ("true".equals(list.get(i).get("flag"))) {
-					s = list.get(i).get("id");
+					s = list.get(i).get("dict_key");
 				}
 			}
 			if (Utils.isEmpty(s)) {

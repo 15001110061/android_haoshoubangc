@@ -210,7 +210,7 @@ public class OrdersFeedbackActivity extends BaseActivity implements OnClickListe
 			startActivity(intent);
 			break;
 		case R.id.tv_ordersfeedback_training:// 查看培训与留言
-			
+
 			if (!"".equals(voiceurl) || !"".equals(message)) {
 				intent = new Intent(OrdersFeedbackActivity.this, TrainingAndMessageActivity.class);
 				intent.putExtra("voiceurl", voiceurl);

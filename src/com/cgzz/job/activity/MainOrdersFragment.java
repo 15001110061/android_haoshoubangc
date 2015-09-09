@@ -57,9 +57,8 @@ import com.cgzz.job.view.CustomListView.OnRefreshListener;
 /***
  * @author wjm 主页：订单
  */
-public class MainOrdersFragment extends BaseActivity implements
-		OnClickListener, OnCancelOrderClickListener, OnRouteClickListener,
-		OnTelClickListener, OnTextClickListener {
+public class MainOrdersFragment extends BaseActivity implements OnClickListener, OnCancelOrderClickListener,
+		OnRouteClickListener, OnTelClickListener, OnTextClickListener {
 	private TextView tvCurrent, tvFinish;
 	private ArrayList<Map<String, String>> shufflingList;
 	private boolean isManul;
@@ -79,8 +78,7 @@ public class MainOrdersFragment extends BaseActivity implements
 	private ObserverCallBack callBack = new ObserverCallBack() {
 
 		@Override
-		public void back(String data, int encoding, int method, Object obj,
-				boolean loadedtype) {
+		public void back(String data, int encoding, int method, Object obj, boolean loadedtype) {
 			dismissWaitDialog();
 			Bundle bundle = null;
 			switch (method) {
@@ -96,12 +94,9 @@ public class MainOrdersFragment extends BaseActivity implements
 					}
 
 					bundle = ParserUtil.ParserMylist(data);
-					if (((ArrayList<Map<String, String>>) bundle
-							.getSerializable("list")).size() > 0) {
+					if (((ArrayList<Map<String, String>>) bundle.getSerializable("list")).size() > 0) {
 
-						CurrentData
-								.addAll((ArrayList<Map<String, String>>) bundle
-										.getSerializable("list"));
+						CurrentData.addAll((ArrayList<Map<String, String>>) bundle.getSerializable("list"));
 						lvCurrent.removeHeaderView(noorders);
 						lvCurrent.setCanLoadMore(true);
 					} else {
@@ -140,13 +135,10 @@ public class MainOrdersFragment extends BaseActivity implements
 					}
 
 					bundle = ParserUtil.ParserMylist(data);
-					if (((ArrayList<Map<String, String>>) bundle
-							.getSerializable("list")).size() > 0) {
+					if (((ArrayList<Map<String, String>>) bundle.getSerializable("list")).size() > 0) {
 
 						lvFillOrders.setCanLoadMore(true);// 打开加载更多
-						TrainingData
-								.addAll((ArrayList<Map<String, String>>) bundle
-										.getSerializable("list"));
+						TrainingData.addAll((ArrayList<Map<String, String>>) bundle.getSerializable("list"));
 						lvFillOrders.removeHeaderView(nowanchengorders);
 					} else {
 						if (!loadedtype) {
@@ -180,19 +172,17 @@ public class MainOrdersFragment extends BaseActivity implements
 				case HttpStaticApi.SUCCESS_HTTP:
 
 					bundle = ParserUtil.ParserMsg(data);
-					ToastUtil.makeShortText(MainOrdersFragment.this, bundle
-							.get("msg").toString());
+					ToastUtil.makeShortText(MainOrdersFragment.this, bundle.get("msg").toString());
 
 					logoCurrent = 1;
-					getMylist(UrlConfig.mylist_Http, application.getToken(),
-							application.getUserId(), logoCurrent, true);
+					getMylist(UrlConfig.mylist_Http, application.getToken(), application.getUserId(), logoCurrent,
+							true);
 					break;
 				case HttpStaticApi.FAILURE_HTTP:
 					break;
 				case HttpStaticApi.FAILURE_MSG_HTTP:
 					bundle = ParserUtil.ParserMsg(data);
-					ToastUtil.makeShortText(MainOrdersFragment.this, bundle
-							.get("msg").toString());
+					ToastUtil.makeShortText(MainOrdersFragment.this, bundle.get("msg").toString());
 					break;
 
 				default:
@@ -207,52 +197,43 @@ public class MainOrdersFragment extends BaseActivity implements
 					bundle = ParserUtil.ParserCanarrive(data);
 
 					String type = bundle.getString("type").toString();
-					final String position = bundle.getString("position")
-							.toString();
+					final String position = bundle.getString("position").toString();
 					String msg = bundle.getString("msg").toString();
 					if ("1".equals(type)) {
-						CustomDialog.alertDialog(MainOrdersFragment.this,
-								false, true, true, null, msg,
+						CustomDialog.alertDialog(MainOrdersFragment.this, false, true, true, null, msg,
 								new CustomDialog.PopUpDialogListener() {
 
-									@Override
-									public void doPositiveClick(Boolean isOk) {
-										if (isOk) {// 确定
-											try {
-												getArrive(
+							@Override
+							public void doPositiveClick(Boolean isOk) {
+								if (isOk) {// 确定
+									try {
+										getArrive(
 
-														UrlConfig.arrive_Http,
-														application.getToken(),
-														application.getUserId(),
-														CurrentData
-																.get(Integer
-																		.parseInt(position))
-																.get("orderdetailid"),
-														true);
-											} catch (Exception e) {
-												// TODO: handle exception
-											}
-
-										} else {
-										}
-
+										UrlConfig.arrive_Http, application.getToken(), application.getUserId(),
+												CurrentData.get(Integer.parseInt(position)).get("orderdetailid"), true);
+									} catch (Exception e) {
+										// TODO: handle exception
 									}
-								});
+
+								} else {
+								}
+
+							}
+						});
 					} else if ("0".equals(type)) {
-						CustomDialog.alertDialog2(MainOrdersFragment.this,
-								false, true, false, null, msg,
+						CustomDialog.alertDialog2(MainOrdersFragment.this, false, true, false, null, msg,
 								new CustomDialog.PopUpDialogListener() {
 
-									@Override
-									public void doPositiveClick(Boolean isOk) {
-										if (isOk) {// 确定
+							@Override
+							public void doPositiveClick(Boolean isOk) {
+								if (isOk) {// 确定
 
-										} else {
+								} else {
 
-										}
+								}
 
-									}
-								});
+							}
+						});
 
 					}
 
@@ -285,19 +266,15 @@ public class MainOrdersFragment extends BaseActivity implements
 	public int getStatusHeight(Activity activity) {
 		int statusHeight = 0;
 		Rect localRect = new Rect();
-		activity.getWindow().getDecorView()
-				.getWindowVisibleDisplayFrame(localRect);
+		activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(localRect);
 		statusHeight = localRect.top;
 		if (0 == statusHeight) {
 			Class<?> localClass;
 			try {
 				localClass = Class.forName("com.android.internal.R$dimen");
 				Object localObject = localClass.newInstance();
-				int i5 = Integer.parseInt(localClass
-						.getField("status_bar_height").get(localObject)
-						.toString());
-				statusHeight = activity.getResources()
-						.getDimensionPixelSize(i5);
+				int i5 = Integer.parseInt(localClass.getField("status_bar_height").get(localObject).toString());
+				statusHeight = activity.getResources().getDimensionPixelSize(i5);
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
@@ -331,43 +308,36 @@ public class MainOrdersFragment extends BaseActivity implements
 		viewpager = (ViewPager) findViewById(R.id.viewpager);
 		ivLine = (ImageView) findViewById(R.id.iv_line);
 		// 设置滑动线的宽度
-		android.view.ViewGroup.LayoutParams layoutParams = ivLine
-				.getLayoutParams();
+		android.view.ViewGroup.LayoutParams layoutParams = ivLine.getLayoutParams();
 		LENGTH = d.getWidth() / 2;
 		layoutParams.width = LENGTH;
 		ivLine.setLayoutParams(layoutParams);
 
 		LayoutInflater inflater = getLayoutInflater();
 		int h = d.getHeight();
-		int px173 = getResources()
-				.getDimensionPixelSize(R.dimen.dd_dimen_269px)
+		int px173 = getResources().getDimensionPixelSize(R.dimen.dd_dimen_269px)
 				+ getStatusHeight(MainOrdersFragment.this);//
 		// 没有登录
 		nolog = inflater.inflate(R.layout.layout_nolog, null);
-		RelativeLayout rl_nologo_1 = (RelativeLayout) nolog
-				.findViewById(R.id.rl_nologo_1);
+		RelativeLayout rl_nologo_1 = (RelativeLayout) nolog.findViewById(R.id.rl_nologo_1);
 		tv_nolog_log = (TextView) nolog.findViewById(R.id.tv_nolog_log);
 		tv_nolog_log.setOnClickListener(this);
-		rl_nologo_1.setLayoutParams(new RelativeLayout.LayoutParams(
-				RelativeLayout.LayoutParams.FILL_PARENT, h - px173));
+		rl_nologo_1
+				.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT, h - px173));
 
 		// 没有当前的订单
 		noorders = inflater.inflate(R.layout.layout_noorders, null);
-		RelativeLayout rl_nologo_2 = (RelativeLayout) noorders
-				.findViewById(R.id.rl_nologo_2);
-		tv_noorders_orders = (TextView) noorders
-				.findViewById(R.id.tv_noorders_orders);
+		RelativeLayout rl_nologo_2 = (RelativeLayout) noorders.findViewById(R.id.rl_nologo_2);
+		tv_noorders_orders = (TextView) noorders.findViewById(R.id.tv_noorders_orders);
 		tv_noorders_orders.setOnClickListener(this);
 
-		rl_nologo_2.setLayoutParams(new RelativeLayout.LayoutParams(
-				RelativeLayout.LayoutParams.FILL_PARENT, h - px173));
+		rl_nologo_2
+				.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT, h - px173));
 		// 没有完成的订单
-		nowanchengorders = inflater.inflate(R.layout.layout_nowanchengorders,
-				null);
-		RelativeLayout rl_nologo_3 = (RelativeLayout) nowanchengorders
-				.findViewById(R.id.rl_nologo_3);
-		rl_nologo_3.setLayoutParams(new RelativeLayout.LayoutParams(
-				RelativeLayout.LayoutParams.FILL_PARENT, h - px173));
+		nowanchengorders = inflater.inflate(R.layout.layout_nowanchengorders, null);
+		RelativeLayout rl_nologo_3 = (RelativeLayout) nowanchengorders.findViewById(R.id.rl_nologo_3);
+		rl_nologo_3
+				.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT, h - px173));
 
 		// 填充listview
 		List<ListView> listviews = new ArrayList<ListView>();
@@ -388,8 +358,7 @@ public class MainOrdersFragment extends BaseActivity implements
 
 			@Override
 			public void onLoadMore() {
-				getMylist(UrlConfig.mylist_Http, application.getToken(),
-						application.getUserId(), logoCurrent, false);
+				getMylist(UrlConfig.mylist_Http, application.getToken(), application.getUserId(), logoCurrent, false);
 			}
 		});
 
@@ -399,16 +368,14 @@ public class MainOrdersFragment extends BaseActivity implements
 			public void onRefresh() {
 				lvCurrent.removeHeaderView(noorders);
 				logoCurrent = 1;
-				getMylist(UrlConfig.mylist_Http, application.getToken(),
-						application.getUserId(), logoCurrent, true);
+				getMylist(UrlConfig.mylist_Http, application.getToken(), application.getUserId(), logoCurrent, true);
 
 			}
 		});
 
 		lvFillOrders = new CustomListView(MainOrdersFragment.this);
 		lvFillOrders.setFadingEdgeLength(0);
-		lvFillOrders
-				.setDivider(getResources().getDrawable(R.color.common_grey));
+		lvFillOrders.setDivider(getResources().getDrawable(R.color.common_grey));
 		lvFillOrders.setDividerHeight(Utils.dip2px(MainOrdersFragment.this, 0));
 		lvFillOrders.setFooterDividersEnabled(false);
 		lvFillOrders.setCanRefresh(true);// 关闭下拉刷新
@@ -419,8 +386,8 @@ public class MainOrdersFragment extends BaseActivity implements
 
 			@Override
 			public void onLoadMore() {
-				getTraining(UrlConfig.mylist_Http, application.getToken(),
-						application.getUserId(), logoFillOrders, false);
+				getTraining(UrlConfig.mylist_Http, application.getToken(), application.getUserId(), logoFillOrders,
+						false);
 			}
 		});
 
@@ -431,8 +398,8 @@ public class MainOrdersFragment extends BaseActivity implements
 				lvFillOrders.removeHeaderView(nowanchengorders);
 
 				logoFillOrders = 1;
-				getTraining(UrlConfig.mylist_Http, application.getToken(),
-						application.getUserId(), logoFillOrders, true);
+				getTraining(UrlConfig.mylist_Http, application.getToken(), application.getUserId(), logoFillOrders,
+						true);
 			}
 		});
 
@@ -445,17 +412,14 @@ public class MainOrdersFragment extends BaseActivity implements
 
 			logoCurrent = 1;
 			logoFillOrders = 1;
-			getMylist(UrlConfig.mylist_Http, application.getToken(),
-					application.getUserId(), logoCurrent, true);
-			getTraining(UrlConfig.mylist_Http, application.getToken(),
-					application.getUserId(), logoFillOrders, true);
+			getMylist(UrlConfig.mylist_Http, application.getToken(), application.getUserId(), logoCurrent, true);
+			getTraining(UrlConfig.mylist_Http, application.getToken(), application.getUserId(), logoFillOrders, true);
 		}
 		lvCurrent.setAdapter(Currentadapter);
 		lvFillOrders.setAdapter(FillOrdersadapter);
 		listviews.add(lvCurrent);
 		listviews.add(lvFillOrders);
-		ConsultingPagerAdapter pagerAdapter = new ConsultingPagerAdapter(
-				listviews);
+		ConsultingPagerAdapter pagerAdapter = new ConsultingPagerAdapter(listviews);
 		viewpager.setAdapter(pagerAdapter);
 		viewpager.setOnPageChangeListener(new ConsultingViewpagerPort());
 		switchTabText(TYPE_TAB_Current);
@@ -473,13 +437,10 @@ public class MainOrdersFragment extends BaseActivity implements
 			tvCurrent.setEnabled(false);
 			tvFinish.setEnabled(true);
 			viewpager.setCurrentItem(type);
-			ivLine.startAnimation(getAnimation(currentIndicatorPosition,
-					LENGTH * 0));
+			ivLine.startAnimation(getAnimation(currentIndicatorPosition, LENGTH * 0));
 			currentIndicatorPosition = LENGTH * 0;
-			tvCurrent.setTextColor(this.getResources().getColor(
-					R.color.common_FF971E));
-			tvFinish.setTextColor(this.getResources().getColor(
-					R.color.common_text));
+			tvCurrent.setTextColor(this.getResources().getColor(R.color.common_FF971E));
+			tvFinish.setTextColor(this.getResources().getColor(R.color.common_text));
 			// if (CurrentData.size() > 0) {
 			// include_noorders.setVisibility(View.GONE);
 			// include_nowanchengorders.setVisibility(View.GONE);
@@ -493,13 +454,10 @@ public class MainOrdersFragment extends BaseActivity implements
 			tvCurrent.setEnabled(true);
 			tvFinish.setEnabled(false);
 			viewpager.setCurrentItem(type);
-			ivLine.startAnimation(getAnimation(currentIndicatorPosition,
-					LENGTH * 1));
+			ivLine.startAnimation(getAnimation(currentIndicatorPosition, LENGTH * 1));
 			currentIndicatorPosition = LENGTH * 1;
-			tvCurrent.setTextColor(this.getResources().getColor(
-					R.color.common_text));
-			tvFinish.setTextColor(this.getResources().getColor(
-					R.color.common_FF971E));
+			tvCurrent.setTextColor(this.getResources().getColor(R.color.common_text));
+			tvFinish.setTextColor(this.getResources().getColor(R.color.common_FF971E));
 
 			// if (TrainingData.size() > 0) {
 			// include_noorders.setVisibility(View.GONE);
@@ -560,15 +518,13 @@ public class MainOrdersFragment extends BaseActivity implements
 
 		case R.id.tv_nolog_log:// 登录
 
-			startActivity(new Intent(MainOrdersFragment.this,
-					LoginActivity.class));
+			startActivity(new Intent(MainOrdersFragment.this, LoginActivity.class));
 			finish();
 
 			break;
 
 		case R.id.tv_noorders_orders:// 首页
-			startActivity(new Intent(MainOrdersFragment.this,
-					TabMainActivity.class));
+			startActivity(new Intent(MainOrdersFragment.this, TabMainActivity.class));
 			finish();
 
 			break;
@@ -581,35 +537,27 @@ public class MainOrdersFragment extends BaseActivity implements
 	/**
 	 * 当前订单
 	 */
-	private void getMylist(String url, String token, String userid, int page,
-			boolean loadedtype) {
-		url = url + "?apptype=2&token=" + token + "&userid=" + userid
-				+ "&page=" + page + "&type=1";
-		AnsynHttpRequest.requestGetOrPost(AnsynHttpRequest.GET,
-				MainOrdersFragment.this, url, null, callBack,
-				GlobalVariables.getRequestQueue(MainOrdersFragment.this),
-				HttpStaticApi.mylist_Http, null, loadedtype);
+	private void getMylist(String url, String token, String userid, int page, boolean loadedtype) {
+		url = url + "?apptype=2&token=" + token + "&userid=" + userid + "&page=" + page + "&type=1";
+		AnsynHttpRequest.requestGetOrPost(AnsynHttpRequest.GET, MainOrdersFragment.this, url, null, callBack,
+				GlobalVariables.getRequestQueue(MainOrdersFragment.this), HttpStaticApi.mylist_Http, null, loadedtype);
 	}
 
 	/**
 	 * 完成订单
 	 */
-	private void getTraining(String url, String token, String userid, int page,
-			boolean loadedtype) {
-		url = url + "?apptype=2&token=" + token + "&userid=" + userid
-				+ "&page=" + page + "&type=2";
-		AnsynHttpRequest.requestGetOrPost(AnsynHttpRequest.GET,
-				MainOrdersFragment.this, url, null, callBack,
-				GlobalVariables.getRequestQueue(MainOrdersFragment.this),
-				HttpStaticApi.Training_Http, null, loadedtype);
+	private void getTraining(String url, String token, String userid, int page, boolean loadedtype) {
+		url = url + "?apptype=2&token=" + token + "&userid=" + userid + "&page=" + page + "&type=2";
+		AnsynHttpRequest.requestGetOrPost(AnsynHttpRequest.GET, MainOrdersFragment.this, url, null, callBack,
+				GlobalVariables.getRequestQueue(MainOrdersFragment.this), HttpStaticApi.Training_Http, null,
+				loadedtype);
 
 	}
 
 	/**
 	 * 确认到达接口
 	 */
-	private void getArrive(String url, String token, String userid,
-			String orderdetailid, boolean loadedtype) {
+	private void getArrive(String url, String token, String userid, String orderdetailid, boolean loadedtype) {
 
 		showWaitDialog();
 		HashMap map = new HashMap<String, String>();
@@ -617,18 +565,16 @@ public class MainOrdersFragment extends BaseActivity implements
 		map.put("token", token);
 		map.put("userid", userid);
 		map.put("orderdetailid", orderdetailid);
-		AnsynHttpRequest.requestGetOrPost(AnsynHttpRequest.POST,
-				MainOrdersFragment.this, url, map, callBack,
-				GlobalVariables.getRequestQueue(MainOrdersFragment.this),
-				HttpStaticApi.arrive_Http, null, loadedtype);
+		AnsynHttpRequest.requestGetOrPost(AnsynHttpRequest.POST, MainOrdersFragment.this, url, map, callBack,
+				GlobalVariables.getRequestQueue(MainOrdersFragment.this), HttpStaticApi.arrive_Http, null, loadedtype);
 
 	}
 
 	/**
 	 * 能否确认到达接口
 	 */
-	private void canarrive(String url, String token, String userid,
-			String orderdetailid, String position, boolean loadedtype) {
+	private void canarrive(String url, String token, String userid, String orderdetailid, String position,
+			boolean loadedtype) {
 
 		showWaitDialog();
 		HashMap map = new HashMap<String, String>();
@@ -637,10 +583,9 @@ public class MainOrdersFragment extends BaseActivity implements
 		map.put("userid", userid);
 		map.put("orderid", orderdetailid);
 		map.put("position", position);
-		AnsynHttpRequest.requestGetOrPost(AnsynHttpRequest.POST,
-				MainOrdersFragment.this, url, map, callBack,
-				GlobalVariables.getRequestQueue(MainOrdersFragment.this),
-				HttpStaticApi.canarrive_Http, null, loadedtype);
+		AnsynHttpRequest.requestGetOrPost(AnsynHttpRequest.POST, MainOrdersFragment.this, url, map, callBack,
+				GlobalVariables.getRequestQueue(MainOrdersFragment.this), HttpStaticApi.canarrive_Http, null,
+				loadedtype);
 
 	}
 
@@ -649,15 +594,12 @@ public class MainOrdersFragment extends BaseActivity implements
 	 */
 	@Override
 	public void onCancelOrderClick(int position, View v, int logo) {
-	
+
 		if ("1".equals(CurrentData.get(position).get("status"))) {
-			ToastUtil
-					.makeShortText(MainOrdersFragment.this, "对方已确认订单信息,不能取消订单");
+			ToastUtil.makeShortText(MainOrdersFragment.this, "对方已确认订单信息,不能取消订单");
 		} else {
-			Intent intent = new Intent(MainOrdersFragment.this,
-					CancelReasonActivity.class);
-			intent.putExtra("orderdetailid",
-					CurrentData.get(position).get("orderdetailid"));
+			Intent intent = new Intent(MainOrdersFragment.this, CancelReasonActivity.class);
+			intent.putExtra("orderdetailid", CurrentData.get(position).get("orderdetailid"));
 			startActivityForResult(intent, 1);
 		}
 
@@ -673,8 +615,8 @@ public class MainOrdersFragment extends BaseActivity implements
 			case 1:
 				if ("y".equals(isquxiao)) {
 					logoCurrent = 1;
-					getMylist(UrlConfig.mylist_Http, application.getToken(),
-							application.getUserId(), logoCurrent, true);
+					getMylist(UrlConfig.mylist_Http, application.getToken(), application.getUserId(), logoCurrent,
+							true);
 				}
 				break;
 			default:
@@ -690,8 +632,7 @@ public class MainOrdersFragment extends BaseActivity implements
 	@Override
 	public void onRouteClick(int position, View v, int logo) {
 
-		Intent intent = new Intent(MainOrdersFragment.this,
-				OrdersFeedbackActivity.class);
+		Intent intent = new Intent(MainOrdersFragment.this, OrdersFeedbackActivity.class);
 
 		intent.putExtra("orderid", CurrentData.get(position).get("orderid"));
 
@@ -706,8 +647,7 @@ public class MainOrdersFragment extends BaseActivity implements
 	 */
 	@Override
 	public void onTelClick(final int position, View v, int logo) {
-		canarrive(UrlConfig.canarrive_Http, application.getToken(),
-				application.getUserId(),
+		canarrive(UrlConfig.canarrive_Http, application.getToken(), application.getUserId(),
 				CurrentData.get(position).get("orderid"), position + "", true);
 
 	}
@@ -737,8 +677,7 @@ public class MainOrdersFragment extends BaseActivity implements
 		popTheirProfile.setAnimationStyle(R.style.MyPopupAnimation);
 		popTheirProfile.setWidth(LayoutParams.FILL_PARENT);
 		popTheirProfile.setHeight(LayoutParams.WRAP_CONTENT);
-		popTheirProfile.showAtLocation(findViewById(R.id.rl_seting_two),
-				Gravity.BOTTOM, 0, 0);
+		popTheirProfile.showAtLocation(findViewById(R.id.rl_seting_two), Gravity.BOTTOM, 0, 0);
 
 		TextView up = (TextView) popView.findViewById(R.id.tv_pop_up);
 		TextView title = (TextView) popView.findViewById(R.id.tv_title);
@@ -794,10 +733,10 @@ public class MainOrdersFragment extends BaseActivity implements
 				if ("1".equals(refresh)) {
 					logoCurrent = 1;
 					logoFillOrders = 1;
-					getMylist(UrlConfig.mylist_Http, application.getToken(),
-							application.getUserId(), logoCurrent, true);
-					getTraining(UrlConfig.mylist_Http, application.getToken(),
-							application.getUserId(), logoFillOrders, true);
+					getMylist(UrlConfig.mylist_Http, application.getToken(), application.getUserId(), logoCurrent,
+							true);
+					getTraining(UrlConfig.mylist_Http, application.getToken(), application.getUserId(), logoFillOrders,
+							true);
 				}
 			}
 		}

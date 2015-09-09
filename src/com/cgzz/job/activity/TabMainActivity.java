@@ -70,10 +70,6 @@ public class TabMainActivity extends TabActivity implements OnClickListener {
 		buttom_3 = (ImageButton) findViewById(R.id.buttom_3);
 		buttom_4 = (ImageButton) findViewById(R.id.buttom_4);
 
-		
-	
-		
-		
 		badge = new BadgeView(this, buttom_4);
 		badge.setText("");
 		badge.setTextSize(1);
@@ -94,7 +90,7 @@ public class TabMainActivity extends TabActivity implements OnClickListener {
 			} else {
 				badge1.hide();
 			}
-			
+
 			if (application.isReddot()) {
 				badge.show(true);
 			} else {
