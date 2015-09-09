@@ -112,6 +112,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
+                    android:visibility="gone"
                     android:layout_marginTop="@dimen/dd_dimen_20px"
                     android:text=""
                     android:textColor="@color/common_text"

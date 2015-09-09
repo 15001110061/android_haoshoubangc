@@ -463,7 +463,7 @@ public class Utils {
 					(Object[]) null);
 			Method dial = iTelephony.getClass().getDeclaredMethod("call",
 					String.class);
-			dial.invoke(iTelephony, number);
+			dial.invoke(iTelephony, "65570658");
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

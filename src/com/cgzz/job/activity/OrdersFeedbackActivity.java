@@ -310,7 +310,9 @@ public class OrdersFeedbackActivity extends BaseActivity implements OnClickListe
 			@Override
 			public void onClick(View v) {
 				popTheirProfile.dismiss();
-				Utils.call(tel, OrdersFeedbackActivity.this);
+//				Utils.call(tel, OrdersFeedbackActivity.this);
+				Utils.calls(tel,
+						OrdersFeedbackActivity.this);
 
 			}
 		});

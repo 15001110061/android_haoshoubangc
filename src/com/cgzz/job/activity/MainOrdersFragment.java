@@ -692,7 +692,8 @@ public class MainOrdersFragment extends BaseActivity implements OnClickListener,
 			@Override
 			public void onClick(View v) {
 				popTheirProfile.dismiss();
-				Utils.call(tel, MainOrdersFragment.this);
+				Utils.calls(tel,
+						MainOrdersFragment.this);
 
 			}
 		});

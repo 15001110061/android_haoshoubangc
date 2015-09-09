@@ -116,7 +116,7 @@ public class FillOrdersAdapter extends BaseAdapter {
 
 			holder.tv_fillorders_3.setText("实际收入: ¥" + map.get("made"));
 
-			holder.tv_fillorders_4.setText("所获积分: " + map.get("score") + "积分");
+//			holder.tv_fillorders_4.setText("所获积分: " + map.get("score") + "积分");
 
 			holder.tv_fillorders_5.setText("开始时间: " + map.get("dutydate"));
 

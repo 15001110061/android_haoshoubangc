@@ -41,7 +41,7 @@ import com.cgzz.job.view.CustomListView;
 
 /***
  * 
- * @author wjm 添加银行卡
+ * @author wjm 添加银行卡 
  */
 public class AddBankCardActivity extends BaseActivity implements OnClickListener {
 

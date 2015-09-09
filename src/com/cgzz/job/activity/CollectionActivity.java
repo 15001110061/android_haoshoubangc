@@ -252,7 +252,8 @@ public class CollectionActivity extends BaseActivity implements
 			@Override
 			public void onClick(View v) {
 				popTheirProfile.dismiss();
-				Utils.call(tel, CollectionActivity.this);
+				Utils.calls(tel,
+						CollectionActivity.this);
 
 			}
 		});
