@@ -180,8 +180,13 @@ public class TheirProfileActivity extends BaseActivity
 		// 头像
 		ImageListener listener = ImageLoader.getImageListener(iv_their_pic, R.drawable.icon_touxiangmoren,
 				R.drawable.icon_touxiangmoren);
-		String url = application.getFaceUrl();
-		mImageLoader.get(application.getFaceUrl(), listener);
+//		String url = application.getFaceUrl();
+		try {
+			mImageLoader.get(application.getFaceUrl(), listener);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
 		iv_their_credit.setText("信用分:" + application.getXinyong());
 		et_their_destination.setText(application.getAddress());
 		tv_their_tel.setText(application.getMobile());
@@ -838,9 +843,9 @@ public class TheirProfileActivity extends BaseActivity
 		map.put("realname", realname);
 		map.put("age", age);
 		map.put("workage", workage);
-		if (!"".equals(portrait))
+		if (!Utils.isEmpty(portrait)) 
 			map.put("portrait", portrait);
-		if (!"".equals(address)) {
+		if (!Utils.isEmpty(address)) {
 			map.put("address", address);
 			map.put("latitude", latitude);
 			map.put("longitude", longitude);

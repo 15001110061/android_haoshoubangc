@@ -67,7 +67,7 @@ public class SignedActivityFore extends BaseActivity implements OnClickListener 
 	private static final int CROP_PICTURE = 3;
 	private PopupWindow popTheirProfile;
 	private boolean picture_typePop;
-	String faceurl, cardurl;
+	String faceurl="", cardurl="";
 	ImageView iv_signed_photo_card, iv_signed_photo_face;
 	/**
 	 * 异步回调回来并处理数据
@@ -217,10 +217,10 @@ public class SignedActivityFore extends BaseActivity implements OnClickListener 
 			// return;
 			// }
 
-			if (Utils.isEmpty(cardurl)) {
-				ToastUtil.makeShortText(this, "请上传身份证图片");
-				return;
-			}
+//			if (Utils.isEmpty(cardurl)) {
+//				ToastUtil.makeShortText(this, "请上传身份证图片");
+//				return;
+//			}
 			// intent = new Intent(SignedActivityFore.this,
 			// SignedActivityThree.class);
 			// Bundle bundle = new Bundle();
@@ -748,6 +748,7 @@ public class SignedActivityFore extends BaseActivity implements OnClickListener 
 		map.put("apptype", apptype);
 
 		map.put("card", card);
+		if (!Utils.isEmpty(cardUrl)) 
 		map.put("cardUrl", cardUrl);
 		map.put("sex", sex);
 		map.put("realname", realname);

@@ -244,9 +244,14 @@ public class MainMyFragment extends BaseActivity implements OnClickListener {
 		// GlobalVariables.getRequestQueue(this), new BitmapCache());
 		// Í·Ïñ
 		if (!Utils.isEmpty(application.getFaceUrl())) {
-			ImageListener listener = ImageLoader.getImageListener(iv_my_pic, R.drawable.icon_touxiangmoren,
-					R.drawable.icon_touxiangmoren);
-			mImageLoader.get(application.getFaceUrl(), listener);
+			try {
+				ImageListener listener = ImageLoader.getImageListener(iv_my_pic, R.drawable.icon_touxiangmoren,
+						R.drawable.icon_touxiangmoren);
+				mImageLoader.get(application.getFaceUrl(), listener);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+
 		}
 
 		room_ratingbar_my_car2.setProgress(Integer.parseInt(application.getStarlevel()));
@@ -430,9 +435,14 @@ public class MainMyFragment extends BaseActivity implements OnClickListener {
 			case 1:
 				if (ischenggong.equals("y")) {
 					// Í·Ïñ
-					ImageListener listener = ImageLoader.getImageListener(iv_my_pic, R.drawable.icon_touxiangmoren,
-							R.drawable.icon_touxiangmoren);
-					mImageLoader.get(application.getFaceUrl(), listener);
+					try {
+						ImageListener listener = ImageLoader.getImageListener(iv_my_pic, R.drawable.icon_touxiangmoren,
+								R.drawable.icon_touxiangmoren);
+						mImageLoader.get(application.getFaceUrl(), listener);
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+			
 				} else {
 
 				}

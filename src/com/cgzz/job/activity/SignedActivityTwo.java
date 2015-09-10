@@ -66,7 +66,7 @@ public class SignedActivityTwo extends BaseActivity implements OnClickListener {
 	private static final int CROP_PICTURE = 3;
 	private PopupWindow popTheirProfile;
 	private boolean picture_typePop;
-	String mobile, password, faceurl, cardurl;
+	String mobile="", password="", faceurl="", cardurl="";
 	ImageView iv_signed_photo_card, iv_signed_photo_face;
 	/**
 	 * 异步回调回来并处理数据
@@ -194,15 +194,15 @@ public class SignedActivityTwo extends BaseActivity implements OnClickListener {
 			} else {
 				rb_boys = "2";
 			}
-			if (Utils.isEmpty(faceurl)) {
-				ToastUtil.makeShortText(this, "请上传头像图片");
-				return;
-			}
-
-			if (Utils.isEmpty(cardurl)) {
-				ToastUtil.makeShortText(this, "请上传身份证图片");
-				return;
-			}
+//			if (Utils.isEmpty(faceurl)) {
+//				ToastUtil.makeShortText(this, "请上传头像图片");
+//				return;
+//			}
+//
+//			if (Utils.isEmpty(cardurl)) {
+//				ToastUtil.makeShortText(this, "请上传身份证图片");
+//				return;
+//			}
 			intent = new Intent(SignedActivityTwo.this, SignedActivityThree.class);
 			Bundle bundle = new Bundle();
 			bundle.putString("mobile", mobile);
@@ -682,7 +682,6 @@ public class SignedActivityTwo extends BaseActivity implements OnClickListener {
 			showWaitDialog2();
 
 			String face = ImageTools.savePhotoToSDCard(params[0], HttpStaticApi.Send_TheirProfile, "face");
-
 			return face;
 		}
 
@@ -708,7 +707,6 @@ public class SignedActivityTwo extends BaseActivity implements OnClickListener {
 			showWaitDialog2();
 
 			String card = ImageTools.savePhotoToSDCard(params[0], HttpStaticApi.Send_TheirProfile, "card");
-
 			return card;
 		}
 

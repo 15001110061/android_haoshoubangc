@@ -647,7 +647,12 @@ public class MainConsultingFragment extends BaseActivity implements
 				mViews.get(0), R.drawable.icon_loadfailed_bg,
 				R.drawable.icon_loadfailed_bg);
 		if (mapAfter.get("dict_value") != null)
-			mImageLoader.get(mapAfter.get("dict_value"), listenerAfter);
+			try {
+				mImageLoader.get(mapAfter.get("dict_value"), listenerAfter);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		
 
 		Map<String, String> mapFirst = list.get(0);// 多张图给最前面的图设置背景
 
@@ -655,7 +660,12 @@ public class MainConsultingFragment extends BaseActivity implements
 				mViews.get(length - 1), R.drawable.icon_loadfailed_bg,
 				R.drawable.icon_loadfailed_bg);
 		if (mapFirst.get("dict_value") != null)
-			mImageLoader.get(mapFirst.get("dict_value"), listenerFirst);
+			try {
+				mImageLoader.get(mapFirst.get("dict_value"), listenerFirst);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		
 	}
 
 	public void setAdapter() {

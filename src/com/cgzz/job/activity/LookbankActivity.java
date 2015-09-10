@@ -53,9 +53,14 @@ public class LookbankActivity extends BaseActivity implements OnClickListener {
 
 					bundle = ParserUtil.ParserMyBank(data);
 					if (!Utils.isEmpty(bundle.getString("bank_icon"))) {
-						ImageListener listener = ImageLoader.getImageListener(iv_6, R.drawable.image_yinhang,
-								R.drawable.image_yinhang);
-						mImageLoader.get(bundle.getString("bank_icon"), listener);
+						try {
+							ImageListener listener = ImageLoader.getImageListener(iv_6, R.drawable.image_yinhang,
+									R.drawable.image_yinhang);
+							mImageLoader.get(bundle.getString("bank_icon"), listener);
+						} catch (Exception e) {
+							// TODO: handle exception
+						}
+					
 					}
 
 					iv_my_income2.setText(bundle.getString("bank_name"));

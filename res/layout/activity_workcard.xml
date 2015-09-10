@@ -49,8 +49,8 @@
 
                     <ImageView
                         android:id="@+id/iv_workcard_touxiang"
-                        android:layout_width="@dimen/dd_dimen_330px"
-                        android:layout_height="@dimen/dd_dimen_330px"
+                        android:layout_width="@dimen/dd_dimen_250px"
+                        android:layout_height="@dimen/dd_dimen_250px"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="@dimen/dd_dimen_40px"
@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dd_dimen_40px"
                     android:layout_marginRight="@dimen/dd_dimen_40px"
-                    android:layout_marginTop="@dimen/dd_dimen_28px"
+                    android:layout_marginTop="@dimen/dd_dimen_25px"
                     android:layout_weight="1"
                     android:gravity="center_vertical" >
 

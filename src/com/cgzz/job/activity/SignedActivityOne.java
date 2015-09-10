@@ -116,7 +116,8 @@ public class SignedActivityOne extends BaseActivity implements OnClickListener, 
 		btnWeixuanzhong = resources.getDrawable(R.drawable.shape_current_signed_rls_bg);
 		btnXuanzhong = resources.getDrawable(R.drawable.shape_current_signed_rl_bg);
 		if (!Utils.isEmpty(getLocalNumber())) {
-			et_signed_phones.setText(getLocalNumber()+"");
+			et_signed_phones.setText(	getLocalNumber().replace("+86","")+"");
+		
 		}
 		
 	}
@@ -165,17 +166,17 @@ public class SignedActivityOne extends BaseActivity implements OnClickListener, 
 				ToastUtil.makeShortText(this, "密码应大于六位");
 				return;
 			}
-			if (!Code.equals(captchas)) {
-//				if ("20152012".equals(captchas)) {
+//			if (!Code.equals(captchas)) {
+////				if ("2015".equals(captchas)) {
+////
+////				} else {
+////					ToastUtil.makeShortText(this, "验证码不正确");
+////					return;
+////				}
+//				ToastUtil.makeShortText(this, "验证码不正确");
+//				return;
 //
-//				} else {
-//					ToastUtil.makeShortText(this, "验证码不正确");
-//					return;
-//				}
-				ToastUtil.makeShortText(this, "验证码不正确");
-				return;
-
-			}
+//			}
 
 			intent = new Intent(SignedActivityOne.this, SignedActivityTwo.class);
 			Bundle bundle = new Bundle();

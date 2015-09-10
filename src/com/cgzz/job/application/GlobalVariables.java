@@ -3,12 +3,11 @@ package com.cgzz.job.application;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.cgzz.job.BaseActivityCloseListener;
+import com.cgzz.job.http.UrlConfig;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.SparseArray;
 import cn.jpush.android.api.JPushInterface;
@@ -17,6 +16,10 @@ import cn.jpush.android.api.JPushInterface;
  * 全局变量
  */
 public class GlobalVariables extends LitePalApplication {
+	
+	public boolean isAnnouncement  = false;//
+	
+	
 	public SparseArray<SparseArray<BaseActivityCloseListener>> closeMap;
 	public static RequestQueue mQueue;
 	private SharedPreferences sp;
@@ -60,8 +63,38 @@ public class GlobalVariables extends LitePalApplication {
 	private boolean isReddot = false;
 	private boolean isReddothome = false;
 	private String homemessage = "";// 首页通知消息
+	private boolean isEnvironment = false;
 	
 
+	public  static  String ROOT = "";
+	@Override
+	public void onCreate() {
+		super.onCreate();
+		// 读取配置文件
+		sp = getSharedPreferences("ownconfigure", Activity.MODE_PRIVATE);
+		editor = sp.edit();
+		getAccess();
+
+		// Jpush
+		if (isLogon) {
+			JPushInterface.setDebugMode(true); // 设置开启日志,发布时请关闭日志
+			JPushInterface.init(this); // 初始化 JPush
+			JPushInterface.resumePush(getApplicationContext());
+		}
+		if(isAnnouncement){
+			ROOT = "http://service.haoshoubang.com/";
+		}else{
+			if(isEnvironment){
+			ROOT = "http://service.haoshoubang.com/";
+			}else{
+			ROOT = "http://test.haoshoubang.com/";
+			}
+		}
+	
+		
+		//
+		closeMap = new SparseArray<SparseArray<BaseActivityCloseListener>>();
+	}
 
 	public boolean isReddothome() {
 		return isReddothome;
@@ -70,6 +103,16 @@ public class GlobalVariables extends LitePalApplication {
 	public void setReddothome(boolean isReddothome) {
 		this.isReddothome = isReddothome;
 		editor.putBoolean("isReddothome", isReddothome);
+		editor.commit();
+	}
+
+	public boolean isEnvironment() {
+		return isEnvironment;
+	}
+
+	public void setEnvironment(boolean isEnvironment) {
+		this.isEnvironment = isEnvironment;
+		editor.putBoolean("isEnvironment", isEnvironment);
 		editor.commit();
 	}
 
@@ -86,8 +129,6 @@ public class GlobalVariables extends LitePalApplication {
 	public String getHomeLatitude() {
 		return homeLatitude;
 	}
-
-
 
 	public void setHomeLatitude(String homeLatitude) {
 		this.homeLatitude = homeLatitude;
@@ -234,8 +275,7 @@ public class GlobalVariables extends LitePalApplication {
 		editor.putString("mobile", mobile);
 		editor.commit();
 	}
-	
-	
+
 	public String getHomemessage() {
 		return homemessage;
 	}
@@ -245,6 +285,7 @@ public class GlobalVariables extends LitePalApplication {
 		editor.putString("homemessage", homemessage);
 		editor.commit();
 	}
+
 	public String getAge() {
 		return age;
 	}
@@ -335,25 +376,6 @@ public class GlobalVariables extends LitePalApplication {
 		editor.commit();
 	}
 
-	@Override
-	public void onCreate() {
-		super.onCreate();
-		// 读取配置文件
-		sp = getSharedPreferences("ownconfigure", Activity.MODE_PRIVATE);
-		editor = sp.edit();
-		getAccess();
-
-		// Jpush
-		if (isLogon) {
-			JPushInterface.setDebugMode(true); // 设置开启日志,发布时请关闭日志
-			JPushInterface.init(this); // 初始化 JPush
-			JPushInterface.resumePush(getApplicationContext());
-		}
-
-		//
-		closeMap = new SparseArray<SparseArray<BaseActivityCloseListener>>();
-	}
-
 	public static RequestQueue getRequestQueue(Context c) {
 		if (mQueue == null) {
 			mQueue = Volley.newRequestQueue(c);
@@ -423,7 +445,7 @@ public class GlobalVariables extends LitePalApplication {
 		isReddothome = sp.getBoolean("isReddothome", isReddothome);
 		gestures = sp.getBoolean("gestures", false);
 		stopAccept = sp.getBoolean("stopAccept", false);
-	
+
 		faceUrl = sp.getString("faceUrl", "");
 		// cityCode = sp.getString("cityCode", "");
 		userId = sp.getString("userId", "");
@@ -450,8 +472,7 @@ public class GlobalVariables extends LitePalApplication {
 		cityName = sp.getString("cityName", "北京市");
 		latitude = sp.getString("latitude", "");
 		longitude = sp.getString("longitude", "");
-		
-		
+
 		usercityName = sp.getString("usercityName", "");
 		usercityCode = sp.getString("usercityCode", "");
 
@@ -460,10 +481,10 @@ public class GlobalVariables extends LitePalApplication {
 		homeLatitude = sp.getString("homeLatitude", "");
 		homeLongitude = sp.getString("homeLongitude", "");
 
-
 		orderNum = sp.getString("orderNum", "0");
 
 		homemessage = sp.getString("homemessage", "");
+		isEnvironment = sp.getBoolean("isEnvironment", false);
 		
 
 	}
@@ -588,13 +609,13 @@ public class GlobalVariables extends LitePalApplication {
 			closeMap.remove(key);
 		}
 	}
-	
-//	@Override
-//	public Resources getResources() {
-//		Resources res = super.getResources();
-//		Configuration config = new Configuration();
-//		config.setToDefaults();
-//		res.updateConfiguration(config, res.getDisplayMetrics());
-//		return res;
-//	}
+
+	// @Override
+	// public Resources getResources() {
+	// Resources res = super.getResources();
+	// Configuration config = new Configuration();
+	// config.setToDefaults();
+	// res.updateConfiguration(config, res.getDisplayMetrics());
+	// return res;
+	// }
 }

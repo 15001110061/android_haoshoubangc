@@ -200,9 +200,14 @@ public class WagesActivity extends BaseActivity implements OnClickListener {
 
 		// 头像
 		if (!Utils.isEmpty(bundle.getString("front_photos"))) {
-			ImageListener listener = ImageLoader.getImageListener(tv_wages_picture, R.drawable.image_jiudianmoren,
-					R.drawable.image_jiudianmoren);
-			mImageLoader.get(bundle.getString("front_photos"), listener);
+			try {
+				ImageListener listener = ImageLoader.getImageListener(tv_wages_picture, R.drawable.image_jiudianmoren,
+						R.drawable.image_jiudianmoren);
+				mImageLoader.get(bundle.getString("front_photos"), listener);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
 		}
 
 	}

@@ -33,16 +33,16 @@ public class MyReceiver extends BroadcastReceiver {
 		application = (GlobalVariables) context.getApplicationContext();
 		Bundle bundle = intent.getExtras();
 
-		System.out.println("wjm=Jpush==onReceive :" + intent.getAction() + ", extras: " + printBundle(bundle));
+//		System.out.println("wjm=Jpush==onReceive :" + intent.getAction() + ", extras: " + printBundle(bundle));
 		if (JPushInterface.ACTION_REGISTRATION_ID.equals(intent.getAction())) {
 			String regId = bundle.getString(JPushInterface.EXTRA_REGISTRATION_ID);
-			System.out.println("wjm=Jpush==接收Registration Id :" + regId);
+//			System.out.println("wjm=Jpush==接收Registration Id :" + regId);
 		} else if (JPushInterface.ACTION_MESSAGE_RECEIVED.equals(intent.getAction())) {
-			System.out.println("wjm=Jpush===接收到推送下来的自定义消息:" + bundle.getString(JPushInterface.EXTRA_MESSAGE) + "==="
-					+ bundle.getString(JPushInterface.EXTRA_EXTRA));
+//			System.out.println("wjm=Jpush===接收到推送下来的自定义消息:" + bundle.getString(JPushInterface.EXTRA_MESSAGE) + "==="
+//					+ bundle.getString(JPushInterface.EXTRA_EXTRA));
 		} else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
 			int notifactionId = bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID);
-			System.out.println("wjm=Jpush==接收到推送下来的通知的ID:" + notifactionId + "===" + bundle);
+//			System.out.println("wjm=Jpush==接收到推送下来的通知的ID:" + notifactionId + "===" + bundle);
 			try {
 				bundles = ParserUtil.JGlJSONC(bundle.getString(JPushInterface.EXTRA_EXTRA));
 
@@ -77,8 +77,8 @@ public class MyReceiver extends BroadcastReceiver {
 			}
 
 		} else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
-			System.out.println("wjm===EXTRA_EXTRA=" + bundle.getString(JPushInterface.EXTRA_EXTRA) + "===EXTRA_MESSAGE="
-					+ bundle.getString(JPushInterface.EXTRA_MESSAGE));
+//			System.out.println("wjm===EXTRA_EXTRA=" + bundle.getString(JPushInterface.EXTRA_EXTRA) + "===EXTRA_MESSAGE="
+//					+ bundle.getString(JPushInterface.EXTRA_MESSAGE));
 			try {
 				bundles = ParserUtil.JGlJSONC(bundle.getString(JPushInterface.EXTRA_EXTRA));
 
@@ -112,7 +112,7 @@ public class MyReceiver extends BroadcastReceiver {
 		} else if (JPushInterface.ACTION_RICHPUSH_CALLBACK.equals(intent.getAction())) {
 			// 在这里根据 JPushInterface.EXTRA_EXTRA 的内容处理代码，比如打开新的Activity，
 			// 打开一个网页等..
-			System.out.println("wjm=Jpush==用户收到到RICH PUSH CALLBACK:" + bundle.getString(JPushInterface.EXTRA_EXTRA));
+//			System.out.println("wjm=Jpush==用户收到到RICH PUSH CALLBACK:" + bundle.getString(JPushInterface.EXTRA_EXTRA));
 		} else if (JPushInterface.ACTION_CONNECTION_CHANGE.equals(intent.getAction())) {
 			boolean connected = intent.getBooleanExtra(JPushInterface.EXTRA_CONNECTION_CHANGE, false);
 		} else {

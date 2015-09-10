@@ -208,10 +208,15 @@ public class WorkcardActivity extends BaseActivity implements
 		cb_workcard_car
 				.setProgress(Integer.parseInt(application.getStarlevel()));
 		// Í·Ïñ
-		ImageListener listener = ImageLoader.getImageListener(
-				iv_workcard_touxiang, R.drawable.icon_touxiangmoren2,
-				R.drawable.icon_touxiangmoren2);
-		mImageLoader.get(application.getFaceUrl(), listener);
+		try {
+			ImageListener listener = ImageLoader.getImageListener(
+					iv_workcard_touxiang, R.drawable.icon_touxiangmoren2,
+					R.drawable.icon_touxiangmoren2);
+			mImageLoader.get(application.getFaceUrl(), listener);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	
 		// name
 		tv_workcard_name.setText(application.getRealname());
 		// age

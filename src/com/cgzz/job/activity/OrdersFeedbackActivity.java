@@ -149,10 +149,15 @@ public class OrdersFeedbackActivity extends BaseActivity implements OnClickListe
 		// GlobalVariables.getRequestQueue(this), new BitmapCache());
 		// 头像
 		if (!Utils.isEmpty(bundle.getString("front_photos"))) {
-			ImageListener listener = ImageLoader.getImageListener(iv_ordersfeedback_picture,
-					R.drawable.image_jiudianmoren, R.drawable.image_jiudianmoren);
+			try {
+				ImageListener listener = ImageLoader.getImageListener(iv_ordersfeedback_picture,
+						R.drawable.image_jiudianmoren, R.drawable.image_jiudianmoren);
 
-			mImageLoader.get(bundle.getString("front_photos"), listener);
+				mImageLoader.get(bundle.getString("front_photos"), listener);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+	
 		}
 
 		tv_ordersfeedback_title.setText(bundle.getString("name"));

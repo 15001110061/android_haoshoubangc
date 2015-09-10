@@ -68,8 +68,7 @@ public final class ImageTools {
 	 * @return
 	 * @throws Exception
 	 */
-	public static Bitmap inputStreamToBitmap(InputStream inputStream)
-			throws Exception {
+	public static Bitmap inputStreamToBitmap(InputStream inputStream) throws Exception {
 		return BitmapFactory.decodeStream(inputStream);
 	}
 
@@ -81,8 +80,7 @@ public final class ImageTools {
 	 */
 	public static Bitmap byteToBitmap(byte[] byteArray) {
 		if (byteArray.length != 0) {
-			return BitmapFactory
-					.decodeByteArray(byteArray, 0, byteArray.length);
+			return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
 		} else {
 			return null;
 		}
@@ -162,11 +160,9 @@ public final class ImageTools {
 		Matrix matrix = new Matrix();
 		matrix.preScale(1, -1);
 
-		Bitmap reflectionImage = Bitmap.createBitmap(bitmap, 0, h / 2, w,
-				h / 2, matrix, false);
+		Bitmap reflectionImage = Bitmap.createBitmap(bitmap, 0, h / 2, w, h / 2, matrix, false);
 
-		Bitmap bitmapWithReflection = Bitmap.createBitmap(w, (h + h / 2),
-				Config.ARGB_8888);
+		Bitmap bitmapWithReflection = Bitmap.createBitmap(w, (h + h / 2), Config.ARGB_8888);
 
 		Canvas canvas = new Canvas(bitmapWithReflection);
 		canvas.drawBitmap(bitmap, 0, 0, null);
@@ -177,14 +173,12 @@ public final class ImageTools {
 
 		Paint paint = new Paint();
 		LinearGradient shader = new LinearGradient(0, bitmap.getHeight(), 0,
-				bitmapWithReflection.getHeight() + reflectionGap, 0x70ffffff,
-				0x00ffffff, TileMode.CLAMP);
+				bitmapWithReflection.getHeight() + reflectionGap, 0x70ffffff, 0x00ffffff, TileMode.CLAMP);
 		paint.setShader(shader);
 		// Set the Transfer mode to be porter duff and destination in
 		paint.setXfermode(new PorterDuffXfermode(Mode.DST_IN));
 		// Draw a rectangle using the paint with our linear gradient
-		canvas.drawRect(0, h, w, bitmapWithReflection.getHeight()
-				+ reflectionGap, paint);
+		canvas.drawRect(0, h, w, bitmapWithReflection.getHeight() + reflectionGap, paint);
 
 		return bitmapWithReflection;
 	}
@@ -251,8 +245,7 @@ public final class ImageTools {
 		float sx = ((float) w / width);
 		float sy = ((float) h / height);
 		matrix.postScale(sx, sy);
-		Bitmap newbmp = Bitmap.createBitmap(oldbmp, 0, 0, width, height,
-				matrix, true);
+		Bitmap newbmp = Bitmap.createBitmap(oldbmp, 0, 0, width, height, matrix, true);
 		return new BitmapDrawable(newbmp);
 	}
 
@@ -263,8 +256,7 @@ public final class ImageTools {
 	 * @return
 	 */
 	public static Bitmap getPhotoFromSDCard(String path, String photoName) {
-		Bitmap photoBitmap = BitmapFactory.decodeFile(path + "/" + photoName
-				+ ".png");
+		Bitmap photoBitmap = BitmapFactory.decodeFile(path + "/" + photoName + ".png");
 		if (photoBitmap == null) {
 			return null;
 		} else {
@@ -278,8 +270,7 @@ public final class ImageTools {
 	 * @return
 	 */
 	public static boolean checkSDCardAvailable() {
-		return android.os.Environment.getExternalStorageState().equals(
-				android.os.Environment.MEDIA_MOUNTED);
+		return android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
 	}
 
 	/**
@@ -319,8 +310,7 @@ public final class ImageTools {
 	 * @param photoName
 	 * @param path
 	 */
-	public static String savePhotoToSDCard(Bitmap photoBitmap, String path,
-			String photoName) {
+	public static String savePhotoToSDCard(Bitmap photoBitmap, String path, String photoName) {
 		File photoFile = null;
 		if (checkSDCardAvailable()) {
 			File dir = new File(path);
@@ -328,37 +318,37 @@ public final class ImageTools {
 				dir.mkdirs();
 			}
 
-			 photoFile = new File(path, photoName + ".png");
-			
+			photoFile = new File(path, photoName + ".png");
+
 			FileOutputStream fileOutputStream = null;
 			try {
 				fileOutputStream = new FileOutputStream(photoFile);
 				if (photoBitmap != null) {
-					if (photoBitmap.compress(Bitmap.CompressFormat.PNG, 30,
-							fileOutputStream)) {
+					if (photoBitmap.compress(Bitmap.CompressFormat.PNG, 30, fileOutputStream)) {
 						fileOutputStream.flush();
 						// fileOutputStream.close();
 					}
 				}
 			} catch (Exception e) {
 				photoFile.delete();
-				photoFile=null;
+				photoFile = null;
 				e.printStackTrace();
-				
+
 			} finally {
 				try {
-					fileOutputStream.close();
+					if (fileOutputStream != null)
+						fileOutputStream.close();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			}
 		}
-		if(photoFile!=null){
+		if (photoFile != null) {
 			return photoFile.getPath();
-		}else{
+		} else {
 			return "";
 		}
-		
+
 	}
 
 	/**

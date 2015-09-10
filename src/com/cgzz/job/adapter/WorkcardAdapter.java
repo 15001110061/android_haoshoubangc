@@ -95,7 +95,12 @@ public class WorkcardAdapter extends BaseAdapter {
 		ImageListener listener = ImageLoader.getImageListener(
 				holder.tv_workcard_picture, R.drawable.icon_nor_user,
 				R.drawable.icon_nor_user);
-		ImageContainer imageContainer = mImageLoader.get(image, listener);
+		try {
+			mImageLoader.get(image, listener);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
 		return convertView;
 	}
 

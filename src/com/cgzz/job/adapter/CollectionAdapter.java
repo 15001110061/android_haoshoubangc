@@ -105,10 +105,15 @@ public class CollectionAdapter extends BaseAdapter {
 		holder.iv_collection_shouru.setText(map.get("income"));
 
 		String image = map.get("front_photos");
-		ImageListener listener = ImageLoader.getImageListener(
-				holder.iv_collection_picture, R.drawable.image_moren,
-				R.drawable.image_moren);
-		ImageContainer imageContainer = mImageLoader.get(image, listener);
+		try {
+			ImageListener listener = ImageLoader.getImageListener(
+					holder.iv_collection_picture, R.drawable.image_moren,
+					R.drawable.image_moren);
+			mImageLoader.get(image, listener);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	
 
 		holder.iv_collection_tel.setOnClickListener(new TelOnClickListener(
 				position));

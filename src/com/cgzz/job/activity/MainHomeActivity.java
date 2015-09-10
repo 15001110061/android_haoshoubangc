@@ -1,23 +1,35 @@
 package com.cgzz.job.activity;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -36,6 +48,7 @@ import com.cgzz.job.http.HttpStaticApi;
 import com.cgzz.job.http.ObserverCallBack;
 import com.cgzz.job.http.ParserUtil;
 import com.cgzz.job.http.UrlConfig;
+import com.cgzz.job.utils.ImageTools;
 import com.cgzz.job.utils.TTSController;
 import com.cgzz.job.utils.ToastUtil;
 import com.cgzz.job.utils.Utils;
@@ -54,13 +67,14 @@ public class MainHomeActivity extends BaseActivity
 	private ScaleGallery gallery;
 	private LinearLayout llright, llLeft;
 	private TextView tv_title_left, tv_home_item_sign, tv_hemo_chongshi, tv_hemo_peixun, tv_hemo_denglu,
-			tv_hemo_denglu1, tv_home_tz_title, tv_home_tz_cha;
+			tv_hemo_denglu1, tv_home_tz_title, tv_home_tz_cha, tv_title;
 
 	private int logoFillOrders = 1;// 页码标识
 	private ArrayList<Map<String, String>> CurrentData = new ArrayList<Map<String, String>>();
 	private String orderid = "";
 	private MyGalleryAdapter myGalleryAdapter;
 	private RelativeLayout rl_home_1, rl_home_2, rl_home_3, rl_home_4, rl_home_5, rl_home_6, rl_home_7;
+	private int mark =0;
 	/**
 	 * 异步回调回来并处理数据
 	 */
@@ -176,6 +190,9 @@ public class MainHomeActivity extends BaseActivity
 	}
 
 	private void initView() {
+		//
+
+		tv_title = (TextView) findViewById(R.id.tv_title);
 		rl_home_1 = (RelativeLayout) findViewById(R.id.rl_home_1);
 		rl_home_2 = (RelativeLayout) findViewById(R.id.rl_home_2);
 		rl_home_3 = (RelativeLayout) findViewById(R.id.rl_home_3);
@@ -198,6 +215,11 @@ public class MainHomeActivity extends BaseActivity
 		tv_hemo_denglu.setOnClickListener(this);
 		tv_hemo_denglu1.setOnClickListener(this);
 		tv_home_tz_cha.setOnClickListener(this);
+		if (!application.isAnnouncement){
+			tv_title.setOnClickListener(this);
+			tv_title.setText("内部使用版本");
+		}
+		
 		gallery = (ScaleGallery) findViewById(R.id.gallery);
 		gallery.setSpacing(-1);
 
@@ -366,6 +388,14 @@ public class MainHomeActivity extends BaseActivity
 		case R.id.tv_home_tz_cha://
 			rl_home_7.setVisibility(View.GONE);
 			application.setHomemessage("");
+			break;
+		case R.id.tv_title://
+			mark++;
+			if(mark==4){
+				popTheirProfile();
+				mark=0;
+			}
+		
 			break;
 
 		default:
@@ -727,8 +757,7 @@ public class MainHomeActivity extends BaseActivity
 					tv_home_tz_title.setText(application.getHomemessage());
 				}
 			}
-			
-			
+
 			// else if ("reddothome".equals(TYPE)) {
 			// String isReddot = bundle.getString("isReddot");
 			// if (application.isLogon()) {
@@ -751,6 +780,66 @@ public class MainHomeActivity extends BaseActivity
 			unregisterReceiver(recobdlist);
 
 		super.onDestroy();
+	}
+
+	private PopupWindow popTheirProfile;
+
+	public void popTheirProfile() {
+		View popView = View.inflate(this, R.layout.pop_their_profile, null);
+
+		ImageButton dis = (ImageButton) popView.findViewById(R.id.ib_dis);
+		popTheirProfile = new PopupWindow(popView);
+		popTheirProfile.setBackgroundDrawable(new BitmapDrawable());// 没有此句点击外部不会消失
+		popTheirProfile.setOutsideTouchable(true);
+		popTheirProfile.setFocusable(true);
+		popTheirProfile.setAnimationStyle(R.style.MyPopupAnimation);
+		popTheirProfile.setWidth(LayoutParams.FILL_PARENT);
+		popTheirProfile.setHeight(LayoutParams.WRAP_CONTENT);
+		popTheirProfile.showAtLocation(findViewById(R.id.rl_signet_two), Gravity.BOTTOM, 0, 0);
+
+		TextView up = (TextView) popView.findViewById(R.id.tv_pop_up);
+		TextView title = (TextView) popView.findViewById(R.id.tv_title);
+		TextView under = (TextView) popView.findViewById(R.id.tv_pop_under);
+		if (application.isEnvironment()) {
+			title.setText("当前是正式环境");
+		} else {
+			title.setText("当前是测试环境");
+		}
+
+		up.setText("切换到测试环境");
+		under.setText("切换到正式环境");
+
+		up.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				popTheirProfile.dismiss();
+				application.setEnvironment(false);
+				application.setLogon(false);
+				Utils.closeActivity();
+				android.os.Process.killProcess(android.os.Process.myPid()); // 获取PID
+				System.exit(0); // 常规java、c#的标准退出法，返回值为0代表正常退出
+
+			}
+		});
+		under.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				popTheirProfile.dismiss();
+				application.setEnvironment(true);
+				application.setLogon(false);
+				Utils.closeActivity();
+				android.os.Process.killProcess(android.os.Process.myPid()); // 获取PID
+				System.exit(0); // 常规java、c#的标准退出法，返回值为0代表正常退出
+			}
+		});
+		dis.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				popTheirProfile.dismiss();
+			}
+		});
+
 	}
 
 }

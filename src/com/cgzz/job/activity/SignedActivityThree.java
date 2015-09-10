@@ -550,8 +550,11 @@ public class SignedActivityThree extends BaseActivity implements OnClickListener
 		map.put("card", card);
 		map.put("sex", sex + "");
 		map.put("realname", removeAllSpace(realname));
+		if (!Utils.isEmpty(cardUrl)) 
 		map.put("cardUrl", cardUrl);
 		map.put("age", age2 + "");
+		
+		if (!Utils.isEmpty(portrait)) 
 		map.put("portrait", portrait);
 		map.put("latitude", latitude);
 		map.put("longitude", longitude);

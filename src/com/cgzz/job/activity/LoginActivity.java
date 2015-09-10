@@ -89,7 +89,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		public void gotResult(int code, String alias, Set<String> tags) {
 			switch (code) {
 			case 0:
-				System.out.println("wjm=====0");
 				dismissWaitDialog();
 				application.setLogon(true);
 				startActivity(new Intent(LoginActivity.this, TabMainActivity.class));
@@ -100,7 +99,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 				break;
 
 			case 6002:// 设置超时
-				System.out.println("wjm=====6002");
 				
 				dismissWaitDialog();
 //				application.setLogon(true);
@@ -130,7 +128,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 				break;
 
 			case 6011:// 10s内设置tag或alias大于3次
-				System.out.println("wjm=====6011");
 				showWaitDialog();
 				mHandler.sendMessageDelayed(mHandler.obtainMessage(MSG_SET_ALIAS, alias), 1000 * 60);
 				break;
