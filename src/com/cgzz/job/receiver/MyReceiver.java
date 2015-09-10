@@ -42,7 +42,7 @@ public class MyReceiver extends BroadcastReceiver {
 //					+ bundle.getString(JPushInterface.EXTRA_EXTRA));
 		} else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
 			int notifactionId = bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID);
-//			System.out.println("wjm=Jpush==接收到推送下来的通知的ID:" + notifactionId + "===" + bundle);
+			System.out.println("wjm=Jpush==接收到推送下来的通知的ID:" + notifactionId + "===" + bundle);
 			try {
 				bundles = ParserUtil.JGlJSONC(bundle.getString(JPushInterface.EXTRA_EXTRA));
 
@@ -53,7 +53,7 @@ public class MyReceiver extends BroadcastReceiver {
 //					TTSController.getInstance(context).playText("您有一个新订单");
 				} else if (bundles != null && "4".equals(bundles.getString("type"))) {
 //					TTSController.getInstance(context).playText("您有一个长期订单");
-				}else if (bundles != null && "5".equals(bundles.getString("type"))) {
+				}else if (bundles != null && "6".equals(bundles.getString("type"))) {
 					JPushInterface.clearNotificationById(context,
 							notifactionId);
 					

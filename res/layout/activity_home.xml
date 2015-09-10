@@ -77,13 +77,12 @@
 
         <TextView
             android:id="@+id/tv_title"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:gravity="center"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/dd_dimen_26px"
             android:ellipsize="end"
+            android:gravity="center_vertical"
             android:singleLine="true"
             android:text="好手帮"
             android:textColor="@color/common_text"
@@ -384,16 +383,22 @@
         android:layout_height="@dimen/dd_dimen_75px"
         android:layout_below="@+id/rl_title"
         android:background="@drawable/icon_chahaobeijing"
-        android:orientation="vertical"
-        android:visibility="gone" >
+        android:visibility="gone"
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/tv_home_tz_title"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/tv_home_tz_cha"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:gravity="center_horizontal"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
             android:text=""
             android:textColor="#ff971e"
             android:textSize="@dimen/dd_dimen_30px" />
