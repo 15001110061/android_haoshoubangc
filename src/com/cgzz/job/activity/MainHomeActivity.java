@@ -324,7 +324,6 @@ public class MainHomeActivity extends BaseActivity
 		Intent intent = null;
 		switch (arg0.getId()) {
 		case R.id.tv_home_item_sign:// 抢先报名
-			ToastUtil.makeShortText(MainHomeActivity.this, "抢先报名");
 			getGrab(UrlConfig.grab_Http, application.getToken(), application.getUserId(), orderid, true);
 			break;
 		case R.id.ll_title_left://

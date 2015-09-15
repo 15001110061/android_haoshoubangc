@@ -162,9 +162,14 @@ public class MainConsultingFragment extends BaseActivity implements
 //									MainConsultingFragment.this.getResources()
 //											.getString(R.string.http_nodata));
 						} else {
-							lvNews.addHeaderView(nozixun);
-						lvNews.setAdapter(Newsadapter);
+						
 							lvNews.setCanLoadMore(false);// 打开加载更多
+							try {
+								lvNews.addHeaderView(nozixun);
+								lvNews.setAdapter(Newsadapter);
+							} catch (Exception e) {
+								ToastUtil.makeShortText(MainConsultingFragment.this, "暂无数据");
+							}
 						}
 
 					}
@@ -210,9 +215,15 @@ public class MainConsultingFragment extends BaseActivity implements
 //									MainConsultingFragment.this.getResources()
 //											.getString(R.string.http_nodata));
 						} else {
-							lvTraining.addHeaderView(nozixun);
-							lvTraining.setAdapter(Trainingadapter);
+					
 							lvTraining.setCanLoadMore(false);// 打开加载更多
+							
+							try {
+								lvTraining.addHeaderView(nozixun);
+								lvTraining.setAdapter(Trainingadapter);
+							} catch (Exception e) {
+								ToastUtil.makeShortText(MainConsultingFragment.this, "暂无数据");
+							}
 						}
 
 					}

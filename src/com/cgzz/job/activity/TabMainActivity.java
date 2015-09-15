@@ -114,23 +114,28 @@ public class TabMainActivity extends TabActivity implements OnClickListener {
 
 	@Override
 	public void onClick(View arg0) {
-		switch (arg0.getId()) {
-		case R.id.buttom_1://
-			tabHost.setCurrentTabByTag("1");
-			break;
-		case R.id.buttom_2://
-			tabHost.setCurrentTabByTag("2");
-			break;
-		case R.id.buttom_3://
-			tabHost.setCurrentTabByTag("3");
-			break;
-		case R.id.buttom_4://
-			tabHost.setCurrentTabByTag("4");
-			break;
-		default:
-			break;
+		try {
+			switch (arg0.getId()) {
+			case R.id.buttom_1://
+				tabHost.setCurrentTabByTag("1");
+				break;
+			case R.id.buttom_2://
+				tabHost.setCurrentTabByTag("2");
+				break;
+			case R.id.buttom_3://
+				tabHost.setCurrentTabByTag("3");
+				break;
+			case R.id.buttom_4://
+				tabHost.setCurrentTabByTag("4");
+				break;
+			default:
+				break;
+			}
+			setButton(arg0);
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
-		setButton(arg0);
+	
 	}
 
 	public static void setButton(View v) {

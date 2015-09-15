@@ -105,7 +105,14 @@ public class MainOrdersFragment extends BaseActivity implements OnClickListener,
 							lvCurrent.onLoadMorNodata();
 						} else {
 							lvCurrent.setCanLoadMore(false);
-							lvCurrent.addHeaderView(noorders);
+							try {
+								lvCurrent.setAdapter(null);
+								lvCurrent.addHeaderView(noorders);
+								lvCurrent.setAdapter(Currentadapter);
+							} catch (Exception e) {
+								ToastUtil.makeShortText(MainOrdersFragment.this, "暂无数据");
+							}
+						
 
 						}
 
@@ -148,8 +155,13 @@ public class MainOrdersFragment extends BaseActivity implements OnClickListener,
 							// .getString(R.string.http_nodata));
 						} else {
 							lvFillOrders.setCanLoadMore(false);// 打开加载更多
-							lvFillOrders.addHeaderView(nowanchengorders);
-							lvFillOrders.setAdapter(FillOrdersadapter);
+							try {
+								
+								lvFillOrders.addHeaderView(nowanchengorders);
+							} catch (Exception e) {
+								ToastUtil.makeShortText(MainOrdersFragment.this, "暂无数据");
+						
+							}
 						}
 
 					}

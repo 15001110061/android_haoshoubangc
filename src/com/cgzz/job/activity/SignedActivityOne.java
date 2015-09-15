@@ -166,17 +166,17 @@ public class SignedActivityOne extends BaseActivity implements OnClickListener, 
 				ToastUtil.makeShortText(this, "密码应大于六位");
 				return;
 			}
-//			if (!Code.equals(captchas)) {
-////				if ("2015".equals(captchas)) {
-////
-////				} else {
-////					ToastUtil.makeShortText(this, "验证码不正确");
-////					return;
-////				}
-//				ToastUtil.makeShortText(this, "验证码不正确");
-//				return;
+			if (!Code.equals(captchas)) {
+//				if ("2015".equals(captchas)) {
 //
-//			}
+//				} else {
+//					ToastUtil.makeShortText(this, "验证码不正确");
+//					return;
+//				}
+				ToastUtil.makeShortText(this, "验证码不正确");
+				return;
+
+			}
 
 			intent = new Intent(SignedActivityOne.this, SignedActivityTwo.class);
 			Bundle bundle = new Bundle();

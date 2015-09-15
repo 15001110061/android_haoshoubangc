@@ -636,10 +636,30 @@ public class CustomListView extends ListView implements OnScrollListener {
 	 * 加载更多完成
 	 */
 	public void onLoadMorNodata() {
-		load_more_nodata.setVisibility(View.VISIBLE);
-		mEndLoadTipsTextView.setVisibility(View.GONE);
-		mEndLoadProgressBar.setVisibility(View.GONE);
-		mEndRootView.setVisibility(View.VISIBLE);
+		try {
+			load_more_nodata.setVisibility(View.VISIBLE);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		try {
+			mEndLoadTipsTextView.setVisibility(View.GONE);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		try {
+			mEndLoadProgressBar.setVisibility(View.GONE);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		try {
+			mEndRootView.setVisibility(View.VISIBLE);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
 	}
 
 	/**

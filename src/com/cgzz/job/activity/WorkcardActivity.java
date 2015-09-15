@@ -82,9 +82,15 @@ public class WorkcardActivity extends BaseActivity implements
 									WorkcardActivity.this.getResources()
 											.getString(R.string.http_nodata));
 						} else {
-							cl_workcad_listView.addHeaderView(nozixun);
-							cl_workcad_listView.setAdapter(Workcardadapter);
 							cl_workcad_listView.setCanLoadMore(false);// 打开加载更多
+							try {
+								cl_workcad_listView.addHeaderView(nozixun);
+								cl_workcad_listView.setAdapter(Workcardadapter);
+							} catch (Exception e) {
+								ToastUtil.makeShortText(WorkcardActivity.this, "暂无数据");
+							}
+						
+						
 						}
 					}
 
