@@ -17,7 +17,7 @@ import cn.jpush.android.api.JPushInterface;
  */
 public class GlobalVariables extends LitePalApplication {
 	
-	public boolean isAnnouncement  = true;//
+	public boolean isAnnouncement  = false;//
 	
 	
 	public SparseArray<SparseArray<BaseActivityCloseListener>> closeMap;

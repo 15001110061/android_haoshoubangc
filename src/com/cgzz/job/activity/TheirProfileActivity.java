@@ -203,6 +203,7 @@ public class TheirProfileActivity extends BaseActivity
 	}
 
 	private void init() {
+		
 		llLeft.setOnClickListener(this);
 		llright.setOnClickListener(this);
 		tv_their_passwords.setOnClickListener(this);
@@ -210,6 +211,7 @@ public class TheirProfileActivity extends BaseActivity
 		et_their_destination.addTextChangedListener(this);
 		et_their_destination.setOnItemClickListener(this);
 		cb_seting_training.setOnCheckedChangeListener(this);
+		iv_their_credit.setOnClickListener(this);
 	}
 
 	String name = "";
@@ -284,7 +286,17 @@ public class TheirProfileActivity extends BaseActivity
 		case R.id.iv_their_pic:// 头像
 			popTheirProfile(true);
 			break;
-
+			
+		case R.id.iv_their_credit:// 
+			
+			
+			String url = "http://www.haoshoubang.com/bangke/html/credit.html";
+			intent = new Intent(TheirProfileActivity.this, WebBrowserActivity.class);
+			intent.putExtra(WebBrowserActivity.ACTION_KEY_TITLE, "信用值说明");
+			intent.putExtra(WebBrowserActivity.ACTION_KEY_URL, url);
+			startActivity(intent);
+			break;
+			
 		default:
 			break;
 		}

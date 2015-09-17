@@ -191,7 +191,7 @@ public class WagesActivity extends BaseActivity implements OnClickListener {
 
 		tv_wages_jine.setText("￥" + bundle.getString("earn_money"));
 		if ("0".equals(bundle.getString("bounus"))) {
-			tv_wages_dashang.setVisibility(View.GONE);
+			tv_wages_dashang.setVisibility(View.INVISIBLE);
 		} else {
 			tv_wages_dashang.setText("(含打赏" + bundle.getString("bounus") + "元)");
 		}

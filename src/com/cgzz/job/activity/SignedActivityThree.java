@@ -4,26 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AutoCompleteTextView;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import java.util.Map;
 
 import com.amap.api.services.core.PoiItem;
 import com.amap.api.services.poisearch.PoiItemDetail;
@@ -33,6 +14,7 @@ import com.amap.api.services.poisearch.PoiSearch.OnPoiSearchListener;
 import com.cgzz.job.BaseActivity;
 import com.cgzz.job.BaseActivityCloseListener;
 import com.cgzz.job.R;
+import com.cgzz.job.adapter.Myadapter3;
 import com.cgzz.job.adapter.PromptAdapter;
 import com.cgzz.job.application.GlobalVariables;
 import com.cgzz.job.bean.PoiLocation;
@@ -43,11 +25,39 @@ import com.cgzz.job.http.ParserUtil;
 import com.cgzz.job.http.UrlConfig;
 import com.cgzz.job.utils.ToastUtil;
 import com.cgzz.job.utils.Utils;
+import com.cgzz.job.view.CustomListView;
 import com.cgzz.job.wheel.GoOffWheelView;
 import com.cgzz.job.wheel.GoOffWheelView.WheelDateChoiseListener;
 import com.cgzz.job.wheelview.NumericWheelAdapter;
 import com.cgzz.job.wheelview.OnWheelScrollListener;
 import com.cgzz.job.wheelview.WheelView;
+
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
+import android.view.ViewGroup.LayoutParams;
+import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AutoCompleteTextView;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 /***
  * 
@@ -105,7 +115,7 @@ public class SignedActivityThree extends BaseActivity implements OnClickListener
 	int isSign = 0;
 	int age, sex;
 	String introduceno;
-	EditText et_signed_nianxian;
+	TextView et_signed_nianxian;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -142,6 +152,7 @@ public class SignedActivityThree extends BaseActivity implements OnClickListener
 		initView();
 		initListenger();
 		initPopWindow();
+		initmPopupWindowView();
 
 	}
 
@@ -161,8 +172,9 @@ public class SignedActivityThree extends BaseActivity implements OnClickListener
 		tv_signed_next = (TextView) findViewById(R.id.tv_signed_next);
 		cb_seting_training = (CheckBox) findViewById(R.id.cb_seting_training);
 		et_signed_sign = (CheckBox) findViewById(R.id.et_signed_sign);
-		et_signed_nianxian = (EditText) findViewById(R.id.et_signed_nianxian);
-		et_signed_nianxian.setInputType(EditorInfo.TYPE_CLASS_PHONE);
+		et_signed_nianxian = (TextView) findViewById(R.id.et_signed_nianxian);
+		et_signed_nianxian.setOnClickListener(this);
+//		et_signed_nianxian.setInputType(EditorInfo.TYPE_CLASS_PHONE);
 		//
 		ll = (RelativeLayout) findViewById(R.id.ll);
 		ll.addView(getDataPick());
@@ -393,7 +405,21 @@ public class SignedActivityThree extends BaseActivity implements OnClickListener
 			type = 2;
 
 			break;
+		
+			
+		case R.id.et_signed_nianxian://
+			if (popupwindow != null) {
+//				tv_current_room.setVisibility(View.VISIBLE);
+//				tv_current_room.setText("请选择工龄");
+				popupwindow.showAtLocation(findViewById(R.id.rl_signet_two), Gravity.BOTTOM, 0, 0);
+				if (listlv != null)
+					listlv.clear();
+				listlv = getbiaojian();
+				adapter.refreshData(listlv);
 
+			}
+			break;
+			
 		default:
 			break;
 		}
@@ -570,5 +596,98 @@ public class SignedActivityThree extends BaseActivity implements OnClickListener
 	public String removeAllSpace(String str) {
 		String tmpstr = str.replace(" ", "");
 		return tmpstr;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 *
+	 */
+
+	Myadapter3 adapter;
+	ArrayList<Map<String, String>> listlv;
+	PopupWindow popupwindow;
+	CustomListView lvCars;
+//	TextView tv_current_room ;
+
+	public void initmPopupWindowView() {
+		// 获取自定义布局文件的视图
+		View customView = getLayoutInflater().inflate(R.layout.popview_item, null, false);
+		ImageButton dis = (ImageButton) customView.findViewById(R.id.ib_dis);
+
+//		tv_current_room = (TextView) customView.findViewById(R.id.tv_current_room);
+		// 创建PopupWindow宽度和高度
+		popupwindow = new PopupWindow(customView, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, true);
+
+		popupwindow.setAnimationStyle(R.style.MyPopupAnimation);
+		popupwindow.setOutsideTouchable(true);
+		// 点击屏幕其他部分及Back键时PopupWindow消失
+		popupwindow.setBackgroundDrawable(new BitmapDrawable());
+		dis.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				popupwindow.dismiss();
+			}
+		});
+		// 自定义view添加触摸事件
+		customView.setOnTouchListener(new OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				if (popupwindow != null && popupwindow.isShowing()) {
+					popupwindow.dismiss();
+					// popupwindow = null;
+				}
+				return false;
+			}
+		});
+
+		// 车牌
+		lvCars = (CustomListView) customView.findViewById(R.id.listView_select);
+		lvCars.setCacheColorHint(Color.TRANSPARENT);
+		lvCars.setDivider(getResources().getDrawable(R.color.common_white));
+		lvCars.setDividerHeight(Utils.dip2px(this, 0));
+		lvCars.setFooterDividersEnabled(false);
+		lvCars.setCanRefresh(false);// 关闭下拉刷新
+		lvCars.setCanLoadMore(false);// 打开加载更多
+		lvCars.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+
+				if (lvCars == arg0) {
+//						CollectionData.get(Telposition).put("dashangNum", listlv.get(arg2 - 1).get("name"));
+//						ordersConfirmedAdapter.refreshMYData(CollectionData);
+					et_signed_nianxian.setText(listlv.get(arg2 - 1).get("name"));
+						popupwindow.dismiss();
+
+				}
+			}
+		});
+		adapter = new Myadapter3(this);
+		lvCars.setAdapter(adapter);
+
+	} // 标间价格
+
+	private ArrayList<Map<String, String>> getbiaojian() {
+		ArrayList<Map<String, String>> list = new ArrayList<Map<String, String>>();
+		// Map<String, String> map2 = new HashMap<String, String>();
+		// map2.put("name", "0");
+		// list.add(map2);
+		for (int i = 0; i < 26; i++) {
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("name", i + "");
+			list.add(map);
+		}
+		return list;
 	}
 }

@@ -141,7 +141,7 @@
                     android:layout_centerVertical="true"
                     android:src="@drawable/icon_shijian" />
 
-                <TextView
+                <com.cgzz.job.view.MarqueeTextView
                     android:id="@+id/tv_home_item_time"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -149,13 +149,17 @@
                     android:layout_marginLeft="@dimen/dd_dimen_34px"
                     android:layout_marginRight="@dimen/dd_dimen_34px"
                     android:layout_toRightOf="@id/iv_3"
-                    android:ellipsize="marquee"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
+                    
+                    
                     android:gravity="center_vertical"
-                    android:marqueeRepeatLimit="marquee_forever"
-                    android:scrollHorizontally="true"
-                    android:singleLine="true"
+                    
+                                        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+                    
+                    
+                    
+                    
                     android:text="时间"
                     android:textColor="@color/common_text"
                     android:textSize="@dimen/dd_dimen_36px" />
@@ -176,7 +180,7 @@
                     android:layout_centerVertical="true"
                     android:src="@drawable/icon_fangjianshu" />
 
-                <TextView
+                <com.cgzz.job.view.MarqueeTextView
                     android:id="@+id/tv_home_item_time2"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -184,9 +188,19 @@
                     android:layout_marginLeft="@dimen/dd_dimen_34px"
                     android:layout_marginRight="@dimen/dd_dimen_34px"
                     android:layout_toRightOf="@id/iv_8"
-                    android:ellipsize="end"
+                    
+                    
+                    
+                            android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+                    
+                    
+                    
+                    
+                    
+                    
                     android:gravity="center_vertical"
-                    android:singleLine="true"
                     android:text="预计清洁:"
                     android:textColor="@color/common_text"
                     android:textSize="@dimen/dd_dimen_36px" />

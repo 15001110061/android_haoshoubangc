@@ -49,54 +49,58 @@ public class SplashActivity extends InstrumentedActivity implements AMapLocation
 			case HttpStaticApi.version_Http:
 				switch (encoding) {
 				case HttpStaticApi.SUCCESS_HTTP:
+					try {
 
-					bundle = ParserUtil.ParserVersion(data);
-					downloadurl = bundle.get("downloadurl");
-					if (downloadurl != null) {
-						final String url2 = bundle.get("downloadurl").toString();
-						if ("1".equals(bundle.get("forced_upgrade").toString())) {
-							CustomDialog.alertDialog(SplashActivity.this, false, false, true, null,
-									bundle.get("message").toString(), new CustomDialog.PopUpDialogListener() {
+						bundle = ParserUtil.ParserVersion(data);
+						downloadurl = bundle.get("downloadurl");
+						if (downloadurl != null) {
+							final String url2 = bundle.get("downloadurl").toString();
+							if ("1".equals(bundle.get("forced_upgrade").toString())) {
+								CustomDialog.alertDialog(SplashActivity.this, false, false, true, null,
+										bundle.get("message").toString(), new CustomDialog.PopUpDialogListener() {
 
-								@Override
-								public void doPositiveClick(Boolean isOk) {
-									if (isOk) {// 确定
-										String url = url2;
-										Intent intent = new Intent(Intent.ACTION_VIEW);
-										intent.setData(Uri.parse(url));
-										startActivity(intent);
-										openActivity();
-									} else {
-										openActivity();
+									@Override
+									public void doPositiveClick(Boolean isOk) {
+										if (isOk) {// 确定
+											String url = url2;
+											Intent intent = new Intent(Intent.ACTION_VIEW);
+											intent.setData(Uri.parse(url));
+											startActivity(intent);
+											openActivity();
+										} else {
+											openActivity();
 
-									}
-
-								}
-							});
-
-						} else {
-							CustomDialog.alertDialog(SplashActivity.this, false, true, true, null,
-									bundle.get("message").toString(), new CustomDialog.PopUpDialogListener() {
-
-								@Override
-								public void doPositiveClick(Boolean isOk) {
-									if (isOk) {// 确定
-										String url = url2;
-										Intent intent = new Intent(Intent.ACTION_VIEW);
-										intent.setData(Uri.parse(url));
-										startActivity(intent);
-										openActivity();
-									} else {
-										openActivity();
+										}
 
 									}
+								});
 
-								}
-							});
+							} else {
+								CustomDialog.alertDialog(SplashActivity.this, false, true, true, null,
+										bundle.get("message").toString(), new CustomDialog.PopUpDialogListener() {
+
+									@Override
+									public void doPositiveClick(Boolean isOk) {
+										if (isOk) {// 确定
+											String url = url2;
+											Intent intent = new Intent(Intent.ACTION_VIEW);
+											intent.setData(Uri.parse(url));
+											startActivity(intent);
+											openActivity();
+										} else {
+											openActivity();
+
+										}
+
+									}
+								});
+							}
+
 						}
 
+					} catch (Exception e) {
+						// TODO: handle exception
 					}
-
 					break;
 				case HttpStaticApi.FAILURE_HTTP:
 					break;

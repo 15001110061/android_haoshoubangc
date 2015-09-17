@@ -298,6 +298,7 @@ public class MainHomeActivity extends BaseActivity
 		@Override
 		public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 			orderid = CurrentData.get(position).get("orderid");
+			if(CurrentData!=null)
 			if (CurrentData.size() > 1 && CurrentData.size() == (position + 1)) {
 				getOrdercList(UrlConfig.ordercList_Http, application.getToken(), application.getUserId(),
 						logoFillOrders, false);
