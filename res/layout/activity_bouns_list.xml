@@ -1,0 +1,27 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_signet_two"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/common_grey"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/include_stub_title"
+        layout="@layout/stub_title" />
+
+    <RelativeLayout
+        android:id="@+id/rl_home_1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/include_stub_title"
+        android:background="@drawable/icon_home_bgs"
+        android:orientation="vertical" >
+
+        <com.cgzz.job.view.ScaleGallery
+            android:id="@+id/gallery"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+    </RelativeLayout>
+
+</RelativeLayout>

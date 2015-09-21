@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_margin="20dp"
+    android:background="@drawable/icon_bonus_bg"
+    android:orientation="vertical" >
+
+    
+    
+    <RelativeLayout 
+
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+        
+        
+        
+ 
+    <RelativeLayout
+        android:id="@+id/rl_bonus_qiang"
+        android:layout_width="@dimen/dd_dimen_200px"
+        android:layout_height="@dimen/dd_dimen_200px"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dp"
+        android:gravity="center" >
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/icon_color_orange" />
+
+        <TextView
+            android:id="@+id/tv_bonus_qiang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="1"
+            android:text="抢红包"
+            android:textColor="@color/common_white"
+            android:textSize="@dimen/dd_dimen_36px" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_bonus_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:layout_weight="1"
+        android:background="@drawable/icon_bouns_logo" />
+
+    <TextView
+        android:id="@+id/tv_bonus_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+           android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tv_bonus_logo"
+        android:layout_marginTop="@dimen/dd_dimen_36px"
+        android:layout_weight="1"
+        android:text="好手帮"
+        android:textColor="@color/common_white"
+        android:textSize="@dimen/dd_dimen_40px" />
+
+    <TextView
+        android:id="@+id/tv_bonus_titles"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_bonus_title"
+        android:layout_marginLeft="@dimen/dd_dimen_36px"
+        android:layout_marginRight="@dimen/dd_dimen_36px"
+        android:layout_marginTop="@dimen/dd_dimen_20px"
+        android:gravity="center_horizontal"
+        android:text="给您发了一个红包"
+        android:textColor="@color/common_message"
+        android:textSize="@dimen/dd_dimen_30px" />
+
+    <TextView
+        android:id="@+id/tv_bonus_titless"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_bonus_titles"
+        android:layout_marginLeft="@dimen/dd_dimen_36px"
+        android:layout_marginRight="@dimen/dd_dimen_36px"
+        android:layout_marginTop="@dimen/dd_dimen_30px"
+        android:gravity="center_horizontal"
+        android:text="提示"
+        android:textColor="@color/common_white"
+        android:textSize="@dimen/dd_dimen_36px" />
+   </RelativeLayout>
+</RelativeLayout>
