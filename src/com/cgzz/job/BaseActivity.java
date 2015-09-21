@@ -111,7 +111,7 @@ public class BaseActivity extends Activity implements OnReceiverListener {
 			mCache.put(url, bitmap);
 		}
 
-	}
+	} 
 
 	/**
 	 * 全局等待对话框
