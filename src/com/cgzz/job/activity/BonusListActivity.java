@@ -146,7 +146,6 @@ public class BonusListActivity extends BaseActivity
 		intent.putExtra(WebBrowserActivity.ACTION_KEY_TITLE, "ºì°ü");
 		intent.putExtra(WebBrowserActivity.ACTION_KEY_URL, url);
 		startActivity(intent);
-		finish();
 
 	}
 
