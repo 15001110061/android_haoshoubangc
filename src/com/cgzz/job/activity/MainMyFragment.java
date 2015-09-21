@@ -72,7 +72,7 @@ public class MainMyFragment extends BaseActivity implements OnClickListener {
 						application.setOrderNum(bundle.getString("workstatics"));
 						application.setXinyong(bundle.getString("xinyong"));
 
-						if ("1".equals(bundle.get("havebank").toString())) {
+						if ("1".equals(bundle.get("havebank"))) {
 							badge3.hide();
 						} else {
 							badge3.show(true);
