@@ -26,6 +26,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -74,7 +76,7 @@ public class MainHomeActivity extends BaseActivity
 	private String orderid = "";
 	private MyGalleryAdapter myGalleryAdapter;
 	private RelativeLayout rl_home_1, rl_home_2, rl_home_3, rl_home_4, rl_home_5, rl_home_6, rl_home_7;
-	private int mark =0;
+	private int mark = 0;
 	/**
 	 * 异步回调回来并处理数据
 	 */
@@ -174,6 +176,43 @@ public class MainHomeActivity extends BaseActivity
 
 				break;
 
+			case HttpStaticApi.status_Http:
+				switch (encoding) {
+				case HttpStaticApi.SUCCESS_HTTP:
+
+					bundle = ParserUtil.ParserStatus(data);
+					if (!Utils.isEmpty(bundle.getString("status"))) {
+						// 0:无红包，1：有未抢红包，2：有已抢红包
+						if ("0".equals(bundle.getString("status"))) {
+							tv_home_bonus.clearAnimation();
+							tv_home_bonus.setVisibility(View.GONE);
+						} else if ("1".equals(bundle.getString("status"))) {
+							tv_home_bonus.setVisibility(View.VISIBLE);
+							tv_home_bonus.startAnimation(shakeAnim);
+						} else if ("2".equals(bundle.getString("status"))) {
+							tv_home_bonus.setVisibility(View.VISIBLE);
+							shakeAnim.cancel();
+
+						}
+
+					} else {
+						tv_home_bonus.setVisibility(View.GONE);
+					}
+
+					break;
+				case HttpStaticApi.FAILURE_HTTP:
+					tv_home_bonus.setVisibility(View.GONE);
+					break;
+				case HttpStaticApi.FAILURE_MSG_HTTP:
+					tv_home_bonus.setVisibility(View.GONE);
+					break;
+
+				default:
+					break;
+				}
+
+				break;
+
 			default:
 				break;
 			}
@@ -189,9 +228,18 @@ public class MainHomeActivity extends BaseActivity
 		releaseBroadcastReceiver();
 	}
 
+	TextView tv_home_bonus;
+	Animation shakeAnim;
+
 	private void initView() {
 		//
+		tv_home_bonus = (TextView) findViewById(R.id.tv_home_bonus);
+		tv_home_bonus.bringToFront();
 
+		shakeAnim = AnimationUtils.loadAnimation(MainHomeActivity.this, R.anim.shake_x);
+		tv_home_bonus.startAnimation(shakeAnim);
+		tv_home_bonus.setVisibility(View.GONE);
+		//
 		tv_title = (TextView) findViewById(R.id.tv_title);
 		rl_home_1 = (RelativeLayout) findViewById(R.id.rl_home_1);
 		rl_home_2 = (RelativeLayout) findViewById(R.id.rl_home_2);
@@ -215,11 +263,12 @@ public class MainHomeActivity extends BaseActivity
 		tv_hemo_denglu.setOnClickListener(this);
 		tv_hemo_denglu1.setOnClickListener(this);
 		tv_home_tz_cha.setOnClickListener(this);
-		if (!application.isAnnouncement){
+		tv_home_bonus.setOnClickListener(this);
+		if (!application.isAnnouncement) {
 			tv_title.setOnClickListener(this);
 			tv_title.setText("内部使用版本");
 		}
-		
+
 		gallery = (ScaleGallery) findViewById(R.id.gallery);
 		gallery.setSpacing(-1);
 
@@ -263,6 +312,7 @@ public class MainHomeActivity extends BaseActivity
 			logoFillOrders = 1;
 			getOrdercList(UrlConfig.ordercList_Http, application.getToken(), application.getUserId(), logoFillOrders,
 					true);
+
 			if (!Utils.isEmpty(application.getHomemessage())) {
 				rl_home_7.setVisibility(View.VISIBLE);
 				tv_home_tz_title.setText(application.getHomemessage());
@@ -291,6 +341,9 @@ public class MainHomeActivity extends BaseActivity
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		if (application.isLogon()) {
+			getStatus(UrlConfig.status_Http, application.getToken(), application.getUserId(), true);
+		}
 	}
 
 	// 选中图片的监听事件
@@ -298,11 +351,11 @@ public class MainHomeActivity extends BaseActivity
 		@Override
 		public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 			orderid = CurrentData.get(position).get("orderid");
-			if(CurrentData!=null)
-			if (CurrentData.size() > 1 && CurrentData.size() == (position + 1)) {
-				getOrdercList(UrlConfig.ordercList_Http, application.getToken(), application.getUserId(),
-						logoFillOrders, false);
-			}
+			if (CurrentData != null)
+				if (CurrentData.size() > 1 && CurrentData.size() == (position + 1)) {
+					getOrdercList(UrlConfig.ordercList_Http, application.getToken(), application.getUserId(),
+							logoFillOrders, false);
+				}
 
 			if (TTSController.mSpeechSynthesizer != null && TTSController.mSpeechSynthesizer.isSpeaking()) {
 				TTSController.destroy();
@@ -391,16 +444,33 @@ public class MainHomeActivity extends BaseActivity
 			break;
 		case R.id.tv_title://
 			mark++;
-			if(mark==4){
+			if (mark == 4) {
 				popTheirProfile();
-				mark=0;
+				mark = 0;
 			}
-		
+
+			break;
+
+		case R.id.tv_home_bonus://
+
+			intent = new Intent(MainHomeActivity.this, BonusListActivity.class);
+			startActivity(intent);
+
 			break;
 
 		default:
 			break;
 		}
+
+	}
+
+	private void getStatus(String url, String token, String userid, boolean loadedtype) {
+		HashMap map = new HashMap<String, String>();
+		map.put("apptype", 2 + "");
+		map.put("token", token);
+		map.put("userid", userid);
+		AnsynHttpRequest.requestGetOrPost(AnsynHttpRequest.POST, MainHomeActivity.this, url, map, callbackData,
+				GlobalVariables.getRequestQueue(MainHomeActivity.this), HttpStaticApi.status_Http, null, loadedtype);
 
 	}
 
@@ -624,6 +694,7 @@ public class MainHomeActivity extends BaseActivity
 	 */
 	@Override
 	public void onPhoneClick(int position, View v, int logo) {
+
 		Resources resources = this.getResources();
 
 		if ("0".equals(CurrentData.get(position).get("havelaunch"))) {

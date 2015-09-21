@@ -47,8 +47,8 @@ public class TabMainActivity extends TabActivity implements OnClickListener {
 		tabHost = this.getTabHost();
 		TabHost.TabSpec spec;
 		Intent intent;
-		// MainHomeActivity MainHomePageFragment
-		intent = new Intent().setClass(this, MainHomeActivity.class);// Ê×Ò³
+		// MainHomeActivity BonusActivity
+		intent = new Intent().setClass(this,MainHomeActivity .class);// Ê×Ò³
 		intent.putExtra("cityname", cityname);
 		intent.putExtra("cityid", cityid);
 		spec = tabHost.newTabSpec("1").setIndicator("1").setContent(intent);

@@ -91,6 +91,10 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activity.BonusListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activity.CollectionActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" />
@@ -155,6 +159,14 @@
             android:name=".activity.SingleActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" >
+
+            <!-- android:theme="@style/MyDialogTopRight" -->
+        </activity>
+        <activity
+            android:name=".activity.BonusActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/Translucent_NoTitle" >
 
             <!-- android:theme="@style/MyDialogTopRight" -->
         </activity>

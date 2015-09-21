@@ -57,4 +57,6 @@ public class HttpStaticApi {
 	public static final int  myBank_Http = 10039;//
 	public static final int  wages_Http = 10040;//
 	public static final int  evaluate_Http = 10041;//
+	public static final int  status_Http = 10042;//
+	public static final int  redmylist_Http = 10043;//
 }

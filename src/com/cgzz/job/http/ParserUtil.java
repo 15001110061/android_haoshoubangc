@@ -5230,4 +5230,120 @@ public class ParserUtil {
 		}
 		return bundle;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public static Bundle ParserStatus(String json) {
+		Bundle bundle = null;
+		try {
+
+			JSONObject jsonObject1 = new JSONObject(json);
+			bundle = new Bundle();
+			if (jsonObject1.has("msg")) {
+				bundle.putString("msg", jsonObject1.getString("msg"));
+			}
+			if (jsonObject1.has("result")) {
+				JSONObject jsonObject = new JSONObject(jsonObject1.getString("result"));
+
+				if (jsonObject.has("status")) {
+					bundle.putString("status", jsonObject.getString("status"));
+				}
+
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return bundle;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	public static Bundle ParserRedmylist(String json) {
+		JSONObject jsonObject1 = null;
+		Bundle bundle = null;
+		HashMap<String, String> hMap = null;
+		JSONObject optJSONObject = null;
+		try {
+			jsonObject1 = new JSONObject(json);
+			bundle = new Bundle();
+
+			if (jsonObject1.has("msg")) {
+				bundle.putString("msg", jsonObject1.getString("msg"));
+			}
+			ArrayList<HashMap<String, String>> data = new ArrayList<HashMap<String, String>>();
+			if (jsonObject1.has("result")) {
+
+				if (jsonObject1.has("result")) {
+					JSONObject jsonObject = new JSONObject(jsonObject1.getString("result"));
+
+					if (jsonObject.has("data")) {
+
+						JSONArray optJSONArray = jsonObject.optJSONArray("data");
+
+						for (int i = 0; i < optJSONArray.length(); i++) {
+							hMap = new HashMap<String, String>();
+							optJSONObject = optJSONArray.optJSONObject(i);
+
+							if (optJSONObject.has("message")) {
+								hMap.put("message", optJSONObject.optString("message"));
+							}
+
+							if (optJSONObject.has("red_id")) {
+								hMap.put("red_id", optJSONObject.optString("red_id"));
+							}
+
+							if (optJSONObject.has("name")) {
+								hMap.put("name", optJSONObject.optString("name"));
+							}
+							if (optJSONObject.has("money")) {
+								hMap.put("money", optJSONObject.optString("money"));
+							}
+							if (optJSONObject.has("img")) {
+								hMap.put("img", optJSONObject.optString("img"));
+							}
+							if (optJSONObject.has("is_grab")) {
+								hMap.put("is_grab", optJSONObject.optString("is_grab"));
+							}
+							if (optJSONObject.has("url")) {
+								hMap.put("url", optJSONObject.optString("url"));
+							}
+							data.add(hMap);
+						}
+					}
+
+				}
+
+			}
+			bundle.putSerializable("list", data);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return bundle;
+	}
 }

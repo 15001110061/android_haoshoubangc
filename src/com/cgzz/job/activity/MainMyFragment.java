@@ -66,16 +66,18 @@ public class MainMyFragment extends BaseActivity implements OnClickListener {
 				switch (encoding) {
 				case HttpStaticApi.SUCCESS_HTTP:
 					bundle = ParserUtil.ParserOrderNum(data);
-					tv_my_describe.setText("共接了" + bundle.getString("workstatics").toString() + "单");
-					application.setOrderNum(bundle.getString("workstatics").toString());
-					application.setXinyong(bundle.getString("xinyong").toString());
+					if (bundle != null) {
 
-					if ("1".equals(bundle.get("havebank").toString())) {
-						badge3.hide();
-					} else {
-						badge3.show(true);
+						tv_my_describe.setText("共接了" + bundle.getString("workstatics") + "单");
+						application.setOrderNum(bundle.getString("workstatics"));
+						application.setXinyong(bundle.getString("xinyong"));
+
+						if ("1".equals(bundle.get("havebank").toString())) {
+							badge3.hide();
+						} else {
+							badge3.show(true);
+						}
 					}
-
 					break;
 				case HttpStaticApi.FAILURE_HTTP:
 					dismissWaitDialog();
@@ -442,7 +444,7 @@ public class MainMyFragment extends BaseActivity implements OnClickListener {
 					} catch (Exception e) {
 						// TODO: handle exception
 					}
-			
+
 				} else {
 
 				}

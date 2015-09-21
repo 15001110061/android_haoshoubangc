@@ -82,6 +82,9 @@ public class UrlConfig {
 	 * 推荐订单列表接口
 	 */
 	public static final String ordercList_Http = GlobalVariables.ROOT + "good-help/orderc/list";
+	
+	
+	
 
 	/**
 	 * 用户抢单接口
@@ -172,4 +175,19 @@ public class UrlConfig {
 	 * 帮客确认长期订单接口
 	 */
 	public static final String confirmOrder_Http = GlobalVariables.ROOT + "good-help/orderc/confirmOrder";
+	
+
+	/**
+	 *是否有红包接口
+	 */
+	public static final String status_Http = GlobalVariables.ROOT + "good-help/red/status";
+	
+	
+	
+	
+
+	/**
+	 *我的红包列表接口
+	 */
+	public static final String redmylist_Http = GlobalVariables.ROOT + "good-help/red/mylist";
 }

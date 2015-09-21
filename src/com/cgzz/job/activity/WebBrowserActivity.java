@@ -18,6 +18,7 @@ import com.cgzz.job.R;
 import com.cgzz.job.http.HttpStaticApi;
 import com.cgzz.job.utils.ScreenShot;
 import com.cgzz.job.utils.ToastUtil;
+import com.cgzz.job.utils.Utils;
 
 /**
  * 用于显示简单的html的界面.传递title和url即可.
@@ -35,7 +36,7 @@ public class WebBrowserActivity extends BaseActivity implements OnClickListener 
 	public static final String ACTION_KEY_URL = "action_key_url";
 	private WebView webview;
 	private ProgressBar progressbar;
-	private String title, url;
+	private String title, url, type = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +45,8 @@ public class WebBrowserActivity extends BaseActivity implements OnClickListener 
 		Intent intent = getIntent();
 		title = intent.getStringExtra(ACTION_KEY_TITLE);
 		url = intent.getStringExtra(ACTION_KEY_URL);
-		setTitle("" + title, true, TITLE_TYPE_IMG, R.drawable.stub_back, false,
-				TITLE_TYPE_TEXT, "");
+		type = intent.getStringExtra("type");
+		setTitle("" + title, true, TITLE_TYPE_IMG, R.drawable.stub_back, false, TITLE_TYPE_TEXT, "");
 		initView();
 	}
 
@@ -87,7 +88,7 @@ public class WebBrowserActivity extends BaseActivity implements OnClickListener 
 			webview.goBack();
 			return true;
 		} else if (!webview.canGoBack() && keyCode == KeyEvent.KEYCODE_BACK) {
-//			webview.destroy();
+			// webview.destroy();
 			this.finish();
 		}
 		return false;
@@ -105,12 +106,24 @@ public class WebBrowserActivity extends BaseActivity implements OnClickListener 
 
 		switch (arg0.getId()) {
 		case R.id.ll_title_left:// 返回
-			finish();
+			onBackPressed() ;
 			break;
 
 		default:
 			break;
 		}
 
+	}
+
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		Intent intent = null;
+		super.onBackPressed();
+		if (!Utils.isEmpty(type) && "0".equals(type)) {
+			intent = new Intent(WebBrowserActivity.this, BonusListActivity.class);
+			startActivity(intent);
+		}
+		finish();
 	}
 }
