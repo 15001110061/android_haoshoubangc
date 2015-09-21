@@ -141,7 +141,7 @@ public class BonusListActivity extends BaseActivity
 	@Override
 	public void onCancelOrderClick(int position, View v, int logo) {
 		
-		String	url = CurrentData.get(position).get("url")+"";
+		String	url = CurrentData.get(position).get("url")+"&userid="+application.getUserId();
 		Intent	intent = new Intent(BonusListActivity.this, WebBrowserActivity.class);
 		intent.putExtra(WebBrowserActivity.ACTION_KEY_TITLE, "ºì°ü");
 		intent.putExtra(WebBrowserActivity.ACTION_KEY_URL, url);
