@@ -23,7 +23,6 @@ import android.widget.TextView;
  * @author wjm ¹ØÓÚ 
  */
 public class AboutActivity extends BaseActivity implements OnClickListener {
-   
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
