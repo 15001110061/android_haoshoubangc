@@ -112,6 +112,7 @@ public class MyReceiver extends BroadcastReceiver {
 				}else if (bundles != null && "7".equals(bundles.getString("type"))) {
 					Intent intents = new Intent(context, BonusActivity.class);
 					intents.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					intents.putExtra("redid", bundles.getString("redid"));
 					context.startActivity(intents);
 
 				}

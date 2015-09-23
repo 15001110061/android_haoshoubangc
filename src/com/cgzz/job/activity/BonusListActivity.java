@@ -24,14 +24,13 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class BonusListActivity extends BaseActivity
-		implements OnClickListener, OnCancelOrderClickListener {
+public class BonusListActivity extends BaseActivity implements OnClickListener, OnCancelOrderClickListener {
 
 	private ScaleGallery gallery;
 
 	private ArrayList<Map<String, String>> CurrentData = new ArrayList<Map<String, String>>();
 	private String orderid = "";
-	private BonusListAdapter bonusListAdapter ;
+	private BonusListAdapter bonusListAdapter;
 	/**
 	 * 异步回调回来并处理数据
 	 */
@@ -46,14 +45,13 @@ public class BonusListActivity extends BaseActivity
 
 					bundle = ParserUtil.ParserRedmylist(data);
 					CurrentData.clear();
-					
+
 					if (((ArrayList<Map<String, String>>) bundle.getSerializable("list")).size() > 0) {
 
-
 						CurrentData.addAll((ArrayList<Map<String, String>>) bundle.getSerializable("list"));
-					} 
+					}
 					bonusListAdapter.refreshMYData(CurrentData);
-					
+
 					break;
 				case HttpStaticApi.FAILURE_HTTP:
 					break;
@@ -67,7 +65,25 @@ public class BonusListActivity extends BaseActivity
 				}
 
 				break;
+			case HttpStaticApi.grabRED_Http://
+				switch (encoding) {
+				case HttpStaticApi.SUCCESS_HTTP:
+					String url = urls + "&userid=" + application.getUserId();
+					Intent intent = new Intent(BonusListActivity.this, WebBrowserActivity.class);
+					intent.putExtra(WebBrowserActivity.ACTION_KEY_TITLE, "红包");
+					intent.putExtra(WebBrowserActivity.ACTION_KEY_URL, url);
+					startActivity(intent);
+					break;
+				case HttpStaticApi.FAILURE_HTTP:
+					break;
+				case HttpStaticApi.FAILURE_MSG_HTTP:
+					break;
 
+				default:
+					break;
+				}
+
+				break;
 			default:
 				break;
 			}
@@ -81,8 +97,11 @@ public class BonusListActivity extends BaseActivity
 		setContentView(R.layout.activity_bouns_list);
 		setTitle("红包列表", true, TITLE_TYPE_IMG, R.drawable.stub_back, false, TITLE_TYPE_TEXT, "");
 		initView();
-	}	private LinearLayout llLeft;
+	}
+
+	private LinearLayout llLeft;
 	TextView tv_home_bonus;
+
 	private void initView() {
 		llLeft = (LinearLayout) findViewById(R.id.ll_title_left);
 		llLeft.setOnClickListener(this);
@@ -97,36 +116,35 @@ public class BonusListActivity extends BaseActivity
 
 	}
 
-
 	@Override
 	public void onClick(View arg0) {
 		Intent intent = null;
 		switch (arg0.getId()) {
-		case R.id.ll_title_left:// 
+		case R.id.ll_title_left://
 			finish();
 			break;
-			
+
 		case R.id.tv_home_bonus://
-		
+
 			break;
-			
+
 		default:
 			break;
 		}
 
 	}
+
 	@Override
 	protected void onResume() {
 		super.onResume();
 
-
-		getRedMylist(UrlConfig.redmylist_Http, application.getToken(), application.getUserId(), 
-				true);
+		getRedMylist(UrlConfig.redmylist_Http, application.getToken(), application.getUserId(), true);
 	}
+
 	/**
 	 * 订单列表
 	 */
-	private void getRedMylist(String url, String token, String userid,boolean loadedtype) {
+	private void getRedMylist(String url, String token, String userid, boolean loadedtype) {
 		HashMap map = new HashMap<String, String>();
 		map.put("apptype", 2 + "");
 		map.put("token", token);
@@ -137,19 +155,39 @@ public class BonusListActivity extends BaseActivity
 
 	}
 
+	String urls = "";
 
 	@Override
 	public void onCancelOrderClick(int position, View v, int logo) {
-		
-		String	url = CurrentData.get(position).get("url")+"&userid="+application.getUserId();
-		Intent	intent = new Intent(BonusListActivity.this, WebBrowserActivity.class);
-		intent.putExtra(WebBrowserActivity.ACTION_KEY_TITLE, "红包");
-		intent.putExtra(WebBrowserActivity.ACTION_KEY_URL, url);
-		startActivity(intent);
+		urls = CurrentData.get(position).get("url");
+
+		if ("1".equals(CurrentData.get(position).get("is_grab"))) {
+			String url = urls + "&userid=" + application.getUserId();
+			Intent intent = new Intent(BonusListActivity.this, WebBrowserActivity.class);
+			intent.putExtra(WebBrowserActivity.ACTION_KEY_TITLE, "红包");
+			intent.putExtra(WebBrowserActivity.ACTION_KEY_URL, url);
+			startActivity(intent);
+		} else {
+			getgrab(UrlConfig.grabRED_Http, application.getToken(), application.getUserId(),
+					CurrentData.get(position).get("red_id"), true);
+		}
 
 	}
 
+	/**
+	 */
+	private void getgrab(String url, String token, String userid, String redid, boolean loadedtype) {
+		showWaitDialog();
+		HashMap map = new HashMap<String, String>();
+		map.put("apptype", 2 + "");
+		map.put("token", token);
+		map.put("userid", userid);
+		map.put("redid", redid);
 
+		AnsynHttpRequest.requestGetOrPost(AnsynHttpRequest.POST, BonusListActivity.this, url, map, callbackData,
+				GlobalVariables.getRequestQueue(BonusListActivity.this), HttpStaticApi.grabRED_Http, null, loadedtype);
+
+	}
 
 	@Override
 	protected void onDestroy() {

@@ -190,4 +190,16 @@ public class UrlConfig {
 	 *我的红包列表接口
 	 */
 	public static final String redmylist_Http = GlobalVariables.ROOT + "good-help/red/mylist";
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 *
+	 */
+	public static final String grabRED_Http = GlobalVariables.ROOT + "good-help/red/grab";
 }

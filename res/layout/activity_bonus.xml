@@ -45,7 +45,7 @@
             android:textSize="@dimen/dd_dimen_36px" />
     </RelativeLayout>
 
-    <TextView
+    <ImageView
         android:id="@+id/tv_bonus_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

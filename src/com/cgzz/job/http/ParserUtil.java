@@ -4875,7 +4875,11 @@ public class ParserUtil {
 			if (jsonObject2.has("homemessage")) {
 				bundle.putString("homemessage", jsonObject2.getString("homemessage"));
 			}
-
+			
+			if (jsonObject2.has("redid")) {
+				bundle.putString("redid", jsonObject2.getString("redid"));
+			}
+			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -5343,6 +5347,70 @@ public class ParserUtil {
 			bundle.putSerializable("list", data);
 		} catch (JSONException e) {
 			e.printStackTrace();
+		}
+		return bundle;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public static Bundle ParserdetailRED(String json) {
+		Bundle bundle = null;
+		try {
+
+			JSONObject jsonObject1 = new JSONObject(json);
+			bundle = new Bundle();
+			if (jsonObject1.has("msg")) {
+				bundle.putString("msg", jsonObject1.getString("msg"));
+			}
+			if (jsonObject1.has("result")) {
+				JSONObject jsonObject = new JSONObject(jsonObject1.getString("result"));
+
+			
+				if (jsonObject.has("message")) {
+					bundle.putString("message", jsonObject.getString("message"));
+				}
+				if (jsonObject.has("red_id")) {
+					bundle.putString("red_id", jsonObject.getString("red_id"));
+				}
+				if (jsonObject.has("name")) {
+					bundle.putString("name", jsonObject.getString("name"));
+				}
+				if (jsonObject.has("money")) {
+					bundle.putString("money", jsonObject.getString("money"));
+				}
+				if (jsonObject.has("img")) {
+					bundle.putString("img", jsonObject.getString("img"));
+				}
+				if (jsonObject.has("is_grab")) {
+					bundle.putString("is_grab", jsonObject.getString("is_grab"));
+				}
+				if (jsonObject.has("url")) {
+					bundle.putString("url", jsonObject.getString("url"));
+				}
+				
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 		return bundle;
 	}

@@ -59,4 +59,6 @@ public class HttpStaticApi {
 	public static final int  evaluate_Http = 10041;//
 	public static final int  status_Http = 10042;//
 	public static final int  redmylist_Http = 10043;//
+	public static final int  detailRED_Http = 10044;//
+	public static final int  grabRED_Http = 10045;//
 }

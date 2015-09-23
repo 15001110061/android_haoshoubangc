@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.ImageLoader.ImageListener;
 import com.cgzz.job.BaseActivity;
 import com.cgzz.job.BaseActivityCloseListener;
 import com.cgzz.job.R;
@@ -44,10 +46,10 @@ public class BonusActivity extends BaseActivity implements OnClickListener {
 			dismissWaitDialog();
 			Bundle bundle = null;
 			switch (method) {
-			case HttpStaticApi.detail_Http://
+			case HttpStaticApi.detailRED_Http://
 				switch (encoding) {
 				case HttpStaticApi.SUCCESS_HTTP:
-					bundle = ParserUtil.ParserDetail(data);
+					bundle = ParserUtil.ParserdetailRED(data);
 					setview(bundle);
 					break;
 				case HttpStaticApi.FAILURE_HTTP:
@@ -61,17 +63,20 @@ public class BonusActivity extends BaseActivity implements OnClickListener {
 					break;
 				}
 				break;
-			case HttpStaticApi.grab_Http://
+			case HttpStaticApi.grabRED_Http://
 				switch (encoding) {
 				case HttpStaticApi.SUCCESS_HTTP:
-
-					bundle = ParserUtil.ParserGrab(data);
+					String url = urls + "&userid=" + application.getUserId();
+					Intent intent = new Intent(BonusActivity.this, WebBrowserActivity.class);
+					intent.putExtra(WebBrowserActivity.ACTION_KEY_TITLE, "红包");
+					intent.putExtra(WebBrowserActivity.ACTION_KEY_URL, url);
+					intent.putExtra("type", "0");
+					startActivity(intent);
+					finish();
 					break;
 				case HttpStaticApi.FAILURE_HTTP:
 					break;
 				case HttpStaticApi.FAILURE_MSG_HTTP:
-					bundle = ParserUtil.ParserGrab(data);
-					ToastUtil.makeShortText(BonusActivity.this, bundle.get("msg").toString());
 					break;
 
 				default:
@@ -100,29 +105,43 @@ public class BonusActivity extends BaseActivity implements OnClickListener {
 	// tv_sing_jiedan, tv_home_titlename;
 	// RelativeLayout rl_home_item_c, rl_home_item_d, rl_home_item_e,
 	// rl_home_item_f;
-	String id = "";
+	String id = "", redid = "";
 	TextView tv_bonus_titless;
 	RelativeLayout rl_bonus_qiang;
 
 	private void initView() {
 
 		final Intent i = getIntent();
-
-		id = i.getStringExtra("orderid");
-		// if (!"".equals(id))
-		// getDetail(UrlConfig.detail_Http, application.getToken(),
-		// application.getUserId(), order_id, true);
+		redid = i.getStringExtra("redid");
+		if (!"".equals(redid))
+			getdetail(UrlConfig.detail_Http, application.getToken(), application.getUserId(), redid, true);
 	}
+
+	ImageView tv_bonus_logo;
+	TextView tv_bonus_title;
 
 	private void init() {
 		rl_bonus_qiang = (RelativeLayout) findViewById(R.id.rl_bonus_qiang);//
 		tv_bonus_titless = (TextView) findViewById(R.id.tv_bonus_titless);//
+		tv_bonus_title = (TextView) findViewById(R.id.tv_bonus_title);//
+		tv_bonus_logo = (ImageView) findViewById(R.id.tv_bonus_logo);//
 
 		rl_bonus_qiang.setOnClickListener(this);
 	}
 
-	private void setview(Bundle bundle) {
+	String urls = "";
 
+	private void setview(Bundle bundle) {
+		try {
+			ImageListener listener = ImageLoader.getImageListener(tv_bonus_logo, R.drawable.icon_touxiangmoren,
+					R.drawable.icon_touxiangmoren);
+			mImageLoader.get(bundle.getString("img"), listener);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		tv_bonus_title.setText(bundle.getString("name"));
+		tv_bonus_titless.setText(bundle.getString("message"));
+		urls = bundle.getString("message");
 	}
 
 	@Override
@@ -131,13 +150,8 @@ public class BonusActivity extends BaseActivity implements OnClickListener {
 		switch (arg0.getId()) {
 		case R.id.rl_bonus_qiang:// 抢
 
-		String	url = "http://www.haoshoubang.com/bangke/html/privacy.html";
-			intent = new Intent(BonusActivity.this, WebBrowserActivity.class);
-			intent.putExtra(WebBrowserActivity.ACTION_KEY_TITLE, "红包");
-			intent.putExtra(WebBrowserActivity.ACTION_KEY_URL, url);
-			intent.putExtra("type", "0");
-			startActivity(intent);
-			finish();
+			getgrab(UrlConfig.grabRED_Http, application.getToken(), application.getUserId(), redid, true);
+
 			break;
 		default:
 			break;
@@ -158,15 +172,31 @@ public class BonusActivity extends BaseActivity implements OnClickListener {
 	/**
 	 * 用户抢单接口
 	 */
-	private void getGrab(String url, String token, String userid, String orderid, boolean loadedtype) {
+	private void getdetail(String url, String token, String userid, String redid, boolean loadedtype) {
 		showWaitDialog();
 		HashMap map = new HashMap<String, String>();
 		map.put("apptype", 2 + "");
 		map.put("token", token);
 		map.put("userid", userid);
-		map.put("orderid", orderid);
+		map.put("redid", redid);
+
 		AnsynHttpRequest.requestGetOrPost(AnsynHttpRequest.POST, BonusActivity.this, url, map, callbackData,
-				GlobalVariables.getRequestQueue(BonusActivity.this), HttpStaticApi.grab_Http, null, loadedtype);
+				GlobalVariables.getRequestQueue(BonusActivity.this), HttpStaticApi.detailRED_Http, null, loadedtype);
+
+	}
+
+	/**
+	 */
+	private void getgrab(String url, String token, String userid, String redid, boolean loadedtype) {
+		showWaitDialog();
+		HashMap map = new HashMap<String, String>();
+		map.put("apptype", 2 + "");
+		map.put("token", token);
+		map.put("userid", userid);
+		map.put("redid", redid);
+
+		AnsynHttpRequest.requestGetOrPost(AnsynHttpRequest.POST, BonusActivity.this, url, map, callbackData,
+				GlobalVariables.getRequestQueue(BonusActivity.this), HttpStaticApi.grabRED_Http, null, loadedtype);
 
 	}
 
